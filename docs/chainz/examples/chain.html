@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Verlet Shapes</title>
+	<title>Chain</title>
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection" />
 	<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
@@ -18,10 +18,12 @@
 	<script type="text/javascript">
 		
 	var sim
-	var chain	
+	var chain
+	var canvas=document.getElementById("scratch");
+	var ctx	=canvas.getContext("2d")
 
 	window.onload = function() {
-		var canvas = document.getElementById("scratch");
+		
 
 		// canvas dimensions
 		var width = parseInt(canvas.style.width);
@@ -47,8 +49,8 @@
 		var pin = chain.pin(4);
 		*/
 		segz = []
-		for (i=0; i<=8; i++){
-								segz.push(new Vec2(210 + i * 10, 260 - i * 20))
+		for (i=0; i<=12; i++){
+								segz.push(new Vec2(180 + i * 20, 240 - i * 15))
 								
 			                }
 		xa = segz[segz.length-1].x; ya=segz[segz.length-1].y
@@ -56,8 +58,8 @@
 		
 		console.log (xa, ya)
 		
-		for (i=1; i<=8; i++){
-								segz.push(new Vec2(xa + i * 10, ya + i * 20))
+		for (i=1; i<=12; i++){
+								segz.push(new Vec2(xa + i * 20, ya + i * 15))
 							}
 		console.log(segz)
 		
@@ -65,11 +67,73 @@
 		chain = sim.lineSegments(segz, 0.2)
 		var pin_chain_0 = chain.pin(0)
 		var pin_chain_1 = chain.pin(segz.length-1)
-		/*
-		ang = sim.lineSegments([new Vec2(250,250), new Vec2(300,300), new Vec2(350,275)],0.8)
-		var pin1 = ang.pin(0)
-	    */
+	
+		var linWid = 2.5
 		
+		chain.drawConstraints=function(ctx, compo)
+		{
+			ctx.save();
+			ctx.strokeStyle = "#543324";
+			ctx.lineCap = "round";
+			
+			for(i=0; i<compo.constraints.length; i++)
+				{   var con=compo.constraints[i]
+					if (!(con instanceof DistanceConstraint ))
+					continue;
+					
+					ctx.beginPath();
+					ctx.moveTo(con.a.pos.x, con.a.pos.y);
+					ctx.lineTo(con.b.pos.x, con.b.pos.y);
+					ctx.lineWidth = linWid;
+					ctx.stroke();
+				}	
+		
+			
+			ctx.restore();	
+		}
+		
+		chain.drawParticles=function(ctx,compo)
+		{	ctx.save();
+			ctx.strokeStyle = "Black";
+			ctx.fillStyle = "#eb5e34"
+			ctx.lineWidth=1
+			
+			for(i=1; i<compo.particles.length-1; i++)
+				{	var cx = compo.particles[i].pos.x
+					var cy = compo.particles[i].pos.y
+					ctx.beginPath()
+					ctx.arc(cx, cy,3.6,0,2*Math.PI)
+					ctx.fill()
+					ctx.stroke()
+				}
+				
+
+			cx=chain.particles[0].pos.x; cy = chain.particles[0].pos.y
+			ctx.moveTo(cx,cy)
+			ctx.beginPath()
+			ctx.fillStyle="Yellow"
+			ctx.strokeStyle = "Blue"
+			ctx.lineWidth = 5			
+			ctx.arc(cx,cy,6,0,2*Math.PI)
+			ctx.stroke()
+			ctx.fill()
+			
+			
+			cx=chain.particles[chain.particles.length-1].pos.x; cy = chain.particles[chain.particles.length-1].pos.y
+			ctx.moveTo(cx,cy)
+			ctx.beginPath()
+			ctx.strokeStyle = "Blue"
+			ctx.lineWidth = 5			
+			ctx.arc(cx,cy,6,0,2*Math.PI)
+			ctx.fillStyle="Yellow"
+			
+			ctx.stroke()	
+			ctx.fill()		
+			
+			ctx.restore()
+			
+			
+		}
 		
 
 
