@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Verlet Shapes</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection" />
+	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="../js/verlet-1.0.0.js"></script>
+</head>
+<body>
+	<script type="text/javascript" src="../site/js/common.js"></script>
+	<div id="header">
+		
+
+		
+	</div>
+	<canvas id="scratch" style="width: 800px; height: 500px;"></canvas>
+	<script type="text/javascript">
+		
+	var sim
+	var chain	
+
+	window.onload = function() {
+		var canvas = document.getElementById("scratch");
+
+		// canvas dimensions
+		var width = parseInt(canvas.style.width);
+		var height = parseInt(canvas.style.height);
+
+		// retina
+		var dpr = window.devicePixelRatio || 1;
+		canvas.width = width*dpr;
+		canvas.height = height*dpr;
+		canvas.getContext("2d").scale(dpr, dpr);
+
+		// simulation
+		sim = new VerletJS(width, height, canvas);
+		sim.friction = 1;
+		
+		// entities
+		/*
+		segz = []
+		
+		chain = sim.lineSegments([new Vec2(20,100), new Vec2(40,10), new Vec2(60,10), new Vec2(80,10), new Vec2(500,10)], 0.02);
+		
+		var pin = chain.pin(0);
+		var pin = chain.pin(4);
+		*/
+		segz = []
+		for (i=0; i<=8; i++){
+								segz.push(new Vec2(210 + i * 10, 260 - i * 20))
+								
+			                }
+		xa = segz[segz.length-1].x; ya=segz[segz.length-1].y
+		
+		
+		console.log (xa, ya)
+		
+		for (i=1; i<=8; i++){
+								segz.push(new Vec2(xa + i * 10, ya + i * 20))
+							}
+		console.log(segz)
+		
+		
+		chain = sim.lineSegments(segz, 0.2)
+		var pin_chain_0 = chain.pin(0)
+		var pin_chain_1 = chain.pin(segz.length-1)
+		/*
+		ang = sim.lineSegments([new Vec2(250,250), new Vec2(300,300), new Vec2(350,275)],0.8)
+		var pin1 = ang.pin(0)
+	    */
+		
+		
+
+
+		// animation loop
+		var loop = function() {
+		
+			sim.frame(16);
+			sim.draw();
+			requestAnimFrame(loop);
+		};
+
+		loop();
+	};
+	
+	
+	</script>
+	<div style="width:30%; border:solid gray 2pt; margin: auto; border-radius: 8px">
+	<h2 style='color:black; text-align:center'>Refresh browser to run again</h2>
+	<h3 style='color:black;'><ul><li>Drag any point to shake the chain</li>
+	<li>Drag end points to see new shape</li><ul></h3>
+	</div>
+	
+</body>
