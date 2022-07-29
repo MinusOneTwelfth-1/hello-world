@@ -22,7 +22,7 @@
 			
 			<a id='moreGrav'>0.03</a><hr>
 			<a>Gravity:</a><br>
-			<input type='text' id='setGrav' value='0.3'>
+			<input type='text' id='setGrav' value='0.3' style='width: 6em' ><br>
 			<a>Now: </a><a id='grav' style='color: black'>0.1</a><hr>
 		
 		
@@ -44,6 +44,15 @@
 	var dGrav = 0.001
 	var newGrav=0.55
 	var moreGrav = newGrav - grav
+	
+	var angleConstraints=[]
+	var lasT
+	var segz=[]
+	
+	var pin0A
+	var pin0B
+	var pin1A
+	var pin1B
 
 	window.onload = function() {
 		
@@ -67,25 +76,55 @@
 		var X1=width*0.3; X2=width*0.7; Y1=height/2
 		var nsteps = 40
 		Xstep = (X2-X1)/nsteps
-		segz = []
-		for (i=0; i<=nsteps/2; i++){
-								segz.push(new Vec2(X1+ i * Xstep, Y1 - i * 15))
-								
-			                }
-		xa = segz[segz.length-1].x; ya=segz[segz.length-1].y
+		Ystep=15
 		
-		
-		console.log (xa, ya)
+				
+	
+		var sup1A=new Vec2(X1-20,Y1); sup1A.ID='sup1A'
+		var sup1B=new Vec2(X1,Y1); sup1B.ID='sup1B'
+		segz.push(sup1A)
+		segz.push(sup1B)
 		
 		for (i=1; i<=nsteps/2; i++){
-								segz.push(new Vec2(xa + i * Xstep, ya + i * 15))
+								segz.push(new Vec2(X1+ i * Xstep, Y1 - i * Ystep))
+								
+			                }
+
+		xa = segz[segz.length-1].x; ya=segz[segz.length-1].y
+		for (i=1; i<=nsteps/2; i++){
+								segz.push(lasT=new Vec2(xa + i * Xstep, ya + i * Ystep))
 							}
+		
+		
+	
+		
+		segz.push(new Vec2(lasT.x+15, lasT.y))
+	
 		console.log(segz)
 		
 		
 		chain = sim.lineSegments(segz, 5)
-		var pin_chain_0 = chain.pin(0)
-		var pin_chain_1 = chain.pin(segz.length-1)
+		
+		pin0A = chain.pin(0); pin0A.ID='pin0A'
+		pin0B = chain.pin(1); pin0B.ID='pin0B'
+	
+		pin1A = chain.pin(segz.length-1)
+		pin1A.ID='pin1B'
+		pin1B = chain.pin(segz.length-2)
+		pin1B.ID='pin1B'
+		
+		
+		/*
+		angleConstraints=[]
+		for (i=0; i<chain.particles.length - 3; i++)
+			{
+			  nucon=new AngleConstraint(chain.particles[i], 
+														chain.particles[i+1], chain.particles[i+2],
+														0.1,0)
+			  angleConstraints.push(nucon)
+			 chain.constraints.push(nucon)
+			}
+		*/
 	
 		var linWid = 2.5
 		
@@ -117,7 +156,7 @@
 			ctx.fillStyle = "#eb5e34"
 			ctx.lineWidth=1
 			
-			for(i=1; i<compo.particles.length-1; i++)
+			for(i=2; i<compo.particles.length-2; i++)
 				{	var cx = compo.particles[i].pos.x
 					var cy = compo.particles[i].pos.y
 					ctx.beginPath()
@@ -137,7 +176,7 @@
 			ctx.stroke()
 			ctx.fill()
 			
-			
+
 			cx=chain.particles[chain.particles.length-1].pos.x; cy = chain.particles[chain.particles.length-1].pos.y
 			ctx.moveTo(cx,cy)
 			ctx.beginPath()
@@ -154,7 +193,7 @@
 			
 		}
 		
-
+		unfreeze()
 
 		// animation loop
 		var loop = function() {
@@ -172,7 +211,14 @@
 			$("#moreGrav").text(''+moreGrav.toFixed(6))
 			
 			
+	
+			pin0B.pos.x=pin0A.pos.x+25
+			pin0B.pos.y=pin0A.pos.y
 			
+			pin1B.pos.x=pin1A.pos.x-25
+			pin1B.pos.y=pin1A.pos.y
+			
+	
 			
 			simNumber++
 			sim.frame(16);
@@ -182,6 +228,31 @@
 
 		loop();
 	};
+	
+function freeze( stif)
+{
+	for (var cn in angleConstraints)
+		{	var ancon=angleConstraints[cn]
+			
+			ancon.stiffness=stif
+			ancon.angle= -Math.PI+(ancon.b.pos.sub(ancon.a.pos).angle(ancon.c.pos.sub(ancon.b.pos))
+									
+								  )
+			//ancon.angle=0
+			console.log(ancon.angle/Math.PI*180 + ' deg')
+		
+		}
+}
+
+function unfreeze()
+{
+	for (var cn in angleConstraints)
+		{
+			angleConstraints[cn].stiffness=0
+			
+			
+		}
+}
 	
 	
 	</script>
