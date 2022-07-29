@@ -6,6 +6,12 @@
 	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection" />
 	<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="../js/verlet-1.0.0.js"></script>
+	
+	<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+	
 </head>
 <body>
 	<script type="text/javascript" src="../site/js/common.js"></script>
@@ -13,7 +19,11 @@
 	<div id='panel'>
 		<div id='ui' style='width: 10%; display: inline-block; vertical-align: top; padding-top: 34px'>
 			<a id='simnum'>100</a><br>
-			<a id='grav'>0.1</a>
+			
+			<a id='moreGrav'>0.03</a><hr>
+			<a>Gravity:</a><br>
+			<input type='text' id='setGrav' value='0.3'>
+			<a>Now: </a><a id='grav' style='color: black'>0.1</a><hr>
 		
 		
 		</div>
@@ -31,8 +41,9 @@
 	var simNumber=0
 	
 	var grav=0.5
-	var dGrav = 0.01
-	var newGrav=0.8
+	var dGrav = 0.001
+	var newGrav=0.55
+	var moreGrav = newGrav - grav
 
 	window.onload = function() {
 		
@@ -147,8 +158,22 @@
 
 		// animation loop
 		var loop = function() {
-			document.getElementById('simnum').textContent=simNumber
-			document.getElementById('grav').textContent=grav
+			document.getElementById('simnum').textContent=''+simNumber
+			document.getElementById('grav').textContent=grav.toFixed(4)
+			
+			newGrav=$('#setGrav').val()
+			
+			moreGrav=newGrav-grav
+			if( Math.abs(moreGrav)>0.001 )
+			   {
+				grav = grav + Math.sign(moreGrav) * dGrav
+				sim.gravity.y = grav
+				}
+			$("#moreGrav").text(''+moreGrav.toFixed(6))
+			
+			
+			
+			
 			simNumber++
 			sim.frame(16);
 			sim.draw();
