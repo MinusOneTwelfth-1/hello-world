@@ -9,18 +9,30 @@
 </head>
 <body>
 	<script type="text/javascript" src="../site/js/common.js"></script>
-	<div id="header">
-		
 
+	<div id='panel'>
+		<div id='ui' style='width: 10%; display: inline-block; vertical-align: top; padding-top: 34px'>
+			<a id='simnum'>100</a><br>
+			<a id='grav'>0.1</a>
 		
+		
+		</div>
+		<div id='divCanvas' style='display: inline-block; vertical-align: top'>
+			<canvas id="scratch" style="width: 800px; height: 700px;"></canvas>
+		</div>
 	</div>
-	<canvas id="scratch" style="width: 800px; height: 500px;"></canvas>
+
 	<script type="text/javascript">
 		
 	var sim
 	var chain
 	var canvas=document.getElementById("scratch");
 	var ctx	=canvas.getContext("2d")
+	var simNumber=0
+	
+	var grav=0.5
+	var dGrav = 0.01
+	var newGrav=0.8
 
 	window.onload = function() {
 		
@@ -37,20 +49,16 @@
 
 		// simulation
 		sim = new VerletJS(width, height, canvas);
-		sim.friction = 0.96;
+		sim.friction = 0.95;
+		sim.gravity.y=grav
 		
 		// entities
-		/*
+		var X1=width*0.3; X2=width*0.7; Y1=height/2
+		var nsteps = 40
+		Xstep = (X2-X1)/nsteps
 		segz = []
-		
-		chain = sim.lineSegments([new Vec2(20,100), new Vec2(40,10), new Vec2(60,10), new Vec2(80,10), new Vec2(500,10)], 0.02);
-		
-		var pin = chain.pin(0);
-		var pin = chain.pin(4);
-		*/
-		segz = []
-		for (i=0; i<=12; i++){
-								segz.push(new Vec2(180 + i * 20, 240 - i * 15))
+		for (i=0; i<=nsteps/2; i++){
+								segz.push(new Vec2(X1+ i * Xstep, Y1 - i * 15))
 								
 			                }
 		xa = segz[segz.length-1].x; ya=segz[segz.length-1].y
@@ -58,13 +66,13 @@
 		
 		console.log (xa, ya)
 		
-		for (i=1; i<=12; i++){
-								segz.push(new Vec2(xa + i * 20, ya + i * 15))
+		for (i=1; i<=nsteps/2; i++){
+								segz.push(new Vec2(xa + i * Xstep, ya + i * 15))
 							}
 		console.log(segz)
 		
 		
-		chain = sim.lineSegments(segz, 0.2)
+		chain = sim.lineSegments(segz, 5)
 		var pin_chain_0 = chain.pin(0)
 		var pin_chain_1 = chain.pin(segz.length-1)
 	
@@ -139,7 +147,9 @@
 
 		// animation loop
 		var loop = function() {
-		
+			document.getElementById('simnum').textContent=simNumber
+			document.getElementById('grav').textContent=grav
+			simNumber++
 			sim.frame(16);
 			sim.draw();
 			requestAnimFrame(loop);
