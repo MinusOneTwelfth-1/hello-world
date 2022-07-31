@@ -92,7 +92,8 @@ PinConstraint.prototype.draw = function(ctx) {
 }
 
 
-function AngleConstraint(a, b, c, stiffness) {
+function AngleConstraint(ID, a, b, c, stiffness) {
+	//this.ID=ID;
 	this.a = a;
 	this.b = b;
 	this.c = c;

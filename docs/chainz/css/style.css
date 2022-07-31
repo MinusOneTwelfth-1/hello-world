@@ -8,14 +8,20 @@ body {
 	background: linear-gradient(to bottom,  #ffffff 0%,#e4e8ee 20%,#e4e8ee 80%,#ffffff 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
 
-	color: #969ba3;
+	color: #604c13;
 	font-family: "Libre Baskerville", sans-serif;
 	font-weight: 400;
 	line-height: 1.2em;
 }
 
+input[type='text'] {color: brown; border: dark-grey solid 3px; border-radius: 0.4em; font-size: 14pt; font-weight: bold; width: 75%}
+
+span {padding: 4px; border-radius: 0.4em}
+
+.ui-slider .ui-slider-handle {width: 12px; height: 12px;}
+
 a {
-	color: #26ae90;
+	color: black; padding: 2px;
 }
 
 a:hover {
@@ -122,6 +128,17 @@ canvas {
 	padding-top: 30px;
 	font-family: sans-serif;
 }
+
+button {
+    border: solid blue 2px;
+    background-color: #7272ef;
+    color: white;
+    font-size: 14pt;
+    border-radius: 8px;
+    cursor: pointer;
+    }
+    
+button:hover {border: solid red}
 
 body .one .bsa_it_ad { background: transparent; border: none; font-family: inherit; padding: 0 15px 0 10px; margin: 0; text-align: left; }
 body .one .bsa_it_ad:hover img { -moz-box-shadow: 0 0 3px #000; -webkit-box-shadow: 0 0 3px #000; box-shadow: 0 0 3px #000; }
