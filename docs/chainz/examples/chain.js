@@ -200,12 +200,16 @@
 							$("#setGrav").val( g) 
 							if(g<0)	{ 	$("#spnDown").css("border-style","none")
 										$("#spnUp").css("border-style","solid")
+										$("#spnUp").css( "background-color","#f9f983")
+										$("#spnDown").css( "background-color","inherit")
 										
 									}
 							else
 									{
 										$("#spnDown").css("border-style","solid")
 										$("#spnUp").css("border-style","none")
+										$("#spnUp").css( "background-color","inherit")
+										$("#spnDown").css( "background-color","#f9f983")
 									}
 						}
 						

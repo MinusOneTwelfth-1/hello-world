@@ -58,10 +58,12 @@
 			<input id='txtRigidity' type='text'  value=0.25 onchange='setStiffness()'><br><br>
 			<div id="sldRigid"></div>
 			
-			<hr>
+			<br>
 			<button type='button' onclick='storeShape()'>Remember this Shape</button>
 			<hr>
-			<a id='lblMaxBend'>0.</a>
+			<a>Deflection:</a><br>
+			<a>Max Angle=</a><a id='lblMaxBend'>0.</a><br><br>
+			<a id='snapAngle'>Fracture Limit:</a>
 		
 		</div>
 		<div id='divCanvas' style='display: inline-block; vertical-align: top'>
@@ -77,12 +79,7 @@
 <!-- //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
 
 	
-	<div style="width:30%; border:solid gray 2pt; margin: auto; border-radius: 8px">
-	<h2 style='color:black; text-align:center'>Refresh browser to run again</h2>
-	<h3 style='color:#574cab; text-align:center;'>Interactive Demo: Please view on desktop/laptop</h3>
-	<h4 style='color:black;'><ul><li>Drag any point to shake the chain</li>
-	<li>Drag end points to see new shape</li><ul></h4>
-	</div>
+
 	
 <script>	$(".ui-slider .ui-slider-handle").css("height","10px")
 	$(".ui-slider .ui-slider-handle").css("width","10px")</script>	
