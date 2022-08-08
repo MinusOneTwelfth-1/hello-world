@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- hi -->
+<html lang="en">
+<head>
+	<title>Cantilever</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection" />
+	<link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css"  />
+	<link rel="stylesheet" href="../css/jquery-ui.structure.min.css" />
+	<link rel="stylesheet" href="../css/jquery-ui.theme.min.css" />
+	
+	
+	
+	<link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="../js/verlet-1.0.0.js"></script>
+	
+	
+  
+  <script src="../js/jquery.js"></script>
+  <script src="../js/jquery-ui.min.js"></script>
+  
+  
+<script>
+  $( function() {
+    $( "#slider" ).slider();
+  } );
+  </script>
+	
+</head>
+<body>
+	<script type="text/javascript" src="../site/js/common.js"></script>
+
+	<div id='panel'>
+		<div id='ui' style='width: 15%; display: inline-block; vertical-align: top; padding-top: 34px'>
+			<a id='simnum'>100</a><br>
+			
+			<a id='moreGrav'>0.03</a><hr>
+			<a>Gravity:</a><br>
+			<input type='text' id='setGrav' value='0.025' onchange = txtGravChanged() ><br>
+			
+			
+				<div style='display: flex; margin-top: 0.8em'>
+					<div style='width: 40%; display: inline-block; text-align: left'>
+						<span id='spnUp' style='  text-align: center; border: nonw 3px ; border-color: initial'>Up</span>
+					</div>
+					<div style='flex-grow: 1; text-align: right; display: inline-block'>
+						<span id = 'spnDown' style=' text-align: center; border: none 3px ; border-color: initial'>Down</span>
+					</div>
+				</div>
+			
+			<div style="margin:0.8em">
+				<div id=sldGrav style="margin:8px; margin-top: 0.3em"></div>
+			</div>
+			
+			<a>Now: </a><a id='grav' style='color: black'>0.1</a><hr>
+			
+			<a >Joint Stiffness</a>
+			<input id='txtRigidity' type='text'  value=1.0 onchange='setStiffness()'><br><br>
+			<div id="sldRigid"></div>
+			
+			<br>
+			<button type='button' onclick='storeShape()'>Remember this Shape</button>
+			<hr>
+			<a>Deflection:</a><br>
+			<a>Max Angle=</a><a id='lblMaxBend'>0.</a><br><br>
+			<a id='snapAngle'>Fracture Limit:</a>
+		
+		</div>
+		<div id='divCanvas' style='display: inline-block; vertical-align: top'>
+			<canvas id="scratch" style="width: 800px; height: 700px;"></canvas>
+		</div>
+	</div>
+	
+	
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Big Script ######### -->
+	
+	<script src='cantilever.js' type='text/javascript'></script>
+	
+<!-- //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$-->
+
+	
+
+	
+<script>	$(".ui-slider .ui-slider-handle").css("height","10px")
+	$(".ui-slider .ui-slider-handle").css("width","10px")</script>	
+	
+</body>
