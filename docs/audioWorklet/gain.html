@@ -1,30 +1,20 @@
-<!doctype html>
-<html>
+<button onclick=context.resume()>Start</button>
+<p>Gain</p>
+<input type=range min=0 max=1 value=0.1 step=0.01 id=Gain>
+<span id=GainLabel></span>
 <script>
-  const context = new AudioContext();
-
-  // Loads module script with AudioWorklet.
-
- 
-  
-  function init(){
-        filnam="processors.js"
-        context.audioWorklet.addModule(filnam).then(() => {
-            console.log("promise thenned");
-    let oscillator = new OscillatorNode(context);
-
-    // After the resolution of module loading, an AudioWorkletNode can be
-    // constructed.
-    let gainWorkletNode = new AudioWorkletNode(context, 'gain-processor');
-
-    // AudioWorkletNode can be interoperable with other native AudioNodes.
-    oscillator.connect(gainWorkletNode).connect(context.destination);
-    oscillator.start();
-       })
-   }
+  let context= new AudioContext()
+  GainLabel.innerHTML = Gain.value
+  context.audioWorklet.addModule('worklets.js').then(() => {
+    let myNoise = new AudioWorkletNode(context,'noise-generator')
+    let myGain = new AudioWorkletNode(context,'gain-processor',
+      {parameterData:{gain:0.1}}
+    )
+    Gain.oninput = function() {
+      myGain.parameters.get('gain').value=this.value
+      GainLabel.innerHTML = this.value
+    }
+    myNoise.connect(myGain)
+    myGain.connect(context.destination)
+  })
 </script>
-
-<body>
-<button onClick='init()'>Start</button>
-</body>
-</html>
