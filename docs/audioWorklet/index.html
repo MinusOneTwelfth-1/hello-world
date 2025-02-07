@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<script>
+  const context = new AudioContext();
+
+  // Loads module script with AudioWorklet.
+
+ 
+  
+  function init(){
+        filnam="https://drive.google.com/uc?export=view&id=1zvCfCcFyQAsR-TK8RZ1ejjOFzVNwX0PH"
+        context.audioWorklet.addModule(filnam).then(() => {
+            console.log("promise thenned");
+    let oscillator = new OscillatorNode(context);
+
+    // After the resolution of module loading, an AudioWorkletNode can be
+    // constructed.
+    let gainWorkletNode = new AudioWorkletNode(context, 'gain-processor');
+
+    // AudioWorkletNode can be interoperable with other native AudioNodes.
+    oscillator.connect(gainWorkletNode).connect(context.destination);
+    oscillator.start();
+       })
+   }
+</script>
+
+<body>
+<button onClick='init()'>Start</button>
+</body>
+</html>
