@@ -5,7 +5,7 @@
 <script>
   let context= new AudioContext()
   GainLabel.innerHTML = Gain.value
-  context.audioWorklet.addModule('worklets.js').then(() => {
+  context.audioWorklet.addModule('processors.js').then(() => {
     let myNoise = new AudioWorkletNode(context,'noise-generator')
     let myGain = new AudioWorkletNode(context,'gain-processor',
       {parameterData:{gain:0.1}}
