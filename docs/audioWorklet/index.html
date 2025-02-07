@@ -8,7 +8,7 @@
  
   
   function init(){
-        filnam="https://drive.google.com/uc?export=view&id=1zvCfCcFyQAsR-TK8RZ1ejjOFzVNwX0PH"
+        filnam="processors.js"
         context.audioWorklet.addModule(filnam).then(() => {
             console.log("promise thenned");
     let oscillator = new OscillatorNode(context);
