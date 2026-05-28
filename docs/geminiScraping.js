@@ -106,7 +106,7 @@ python -m http.server 9196
                     console.info(sharedAncestor);
                     console.info("Tag:", sharedAncestor.tagName);
                     console.info("Classes:", sharedAncestor.className);
-                    console.info("---------------------------------");
+                    console.info("----- outBox contains what you want ----------");
                     
                     // Flash the element yellow on screen so you can see it visually
                 //    const originalBg = sharedAncestor.style.backgroundColor;
