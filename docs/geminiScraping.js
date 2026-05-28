@@ -22,6 +22,15 @@ python -m http.server 9196
 //===============================
 */
 
+/*  @@@@@@@@  bookmarklet version @@@@@@@ NOTE : outBox is the common container found
+ 
+ javascript:(function(){console.log('loader here');
+           scrapr=document.createElement('script');
+           scrapr.src='https://minusonetwelfth-1.github.io/hello-world/geminiScraping.js';
+            document.head.appendChild(scrapr);
+           })()
+*/
+
 // Scope our variables safely inside an Immediately Invoked Function Expression (IIFE)
 
 (() => {
@@ -125,4 +134,60 @@ python -m http.server 9196
     });
     
     console.info("Script active! Use Alt+Q for selection 1, then Alt+W for selection 2.");
+    
+    function copyDivToNewWindow(elementId) {
+  const sourceElement = document.getElementById(elementId);
+  if (!sourceElement) return;
+
+  // 1. Open a blank pop-up window
+  const popup = window.open('', '_blank', 'width=800,height=600');
+  if (!popup) {
+    alert('Pop-up blocked! Please allow pop-ups for this site.');
+    return;
+  }
+
+  const popupDoc = popup.document;
+
+  // 2. Initialize the HTML shell
+  popupDoc.open();
+  popupDoc.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Snapshot View</title>
+    </head>
+    <body></body>
+    </html>
+  `);
+  popupDoc.close();
+
+  // 3. Copy ALL active stylesheets from the parent document
+  Array.from(document.styleSheets).forEach((sheet) => {
+    try {
+      const newStyle = popupDoc.createElement('style');
+      
+      // Extract rules from the live sheet object
+      const rules = Array.from(sheet.cssRules)
+        .map(rule => rule.cssText)
+        .join('\n');
+        
+      newStyle.textContent = rules;
+      popupDoc.head.appendChild(newStyle);
+    } catch (e) {
+      // Handle cross-origin stylesheets (e.g., Google Fonts, external CDNs)
+      if (sheet.href) {
+        const newLink = popupDoc.createElement('link');
+        newLink.rel = 'stylesheet';
+        newLink.href = sheet.href;
+        popupDoc.head.appendChild(newLink);
+      }
+    }
+  });
+
+  // 4. Clone the element and inject it into the body
+  const clonedElement = sourceElement.cloneNode(true);
+  popupDoc.body.appendChild(clonedElement);
+}
+
+    
 })();
