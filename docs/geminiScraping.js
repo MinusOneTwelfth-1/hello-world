@@ -137,7 +137,9 @@ psb_Test='asdf';
     
     console.info("Script active! Use Alt+Q for selection 1, then Alt+W for selection 2.");
     
-	testVar="testVar"
+	window.testVar="testVar"
+	
+	window.testFn=function testFn(){console.log('testFn')};
 
     
 })();
