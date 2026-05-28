@@ -27,8 +27,9 @@ python -m http.server 9196
 (() => {
 	
 	fnAa=function(){console.log('aaa..aaa..aaa')}
-	var grabbedBox;
-	console.log("hi from geminiScraping.JS V2.1")
+	theBokz=null;
+	var grabbedBox=null;
+	console.log("hi from geminiScraping.JS V2.2")
     let firstContainer = null;
     let firstText = "";
 	
