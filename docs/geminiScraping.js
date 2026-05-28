@@ -27,7 +27,7 @@ python -m http.server 9196
  javascript:(function(){console.log('loader here');
            scrapr=document.createElement('script');
            scrapr.src='https://minusonetwelfth-1.github.io/hello-world/geminiScraping.js';
-           scrpr.id='scrapr';
+           scrapr.id='scraper';
             document.head.appendChild(scrapr);
            })()
 */
