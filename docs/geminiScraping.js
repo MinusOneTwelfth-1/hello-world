@@ -27,11 +27,13 @@ python -m http.server 9196
  javascript:(function(){console.log('loader here');
            scrapr=document.createElement('script');
            scrapr.src='https://minusonetwelfth-1.github.io/hello-world/geminiScraping.js';
+           scrpr.id='scrapr'
             document.head.appendChild(scrapr);
            })()
 */
 
 // Scope our variables safely inside an Immediately Invoked Function Expression (IIFE)
+psb_Test='asdf';
 
 (() => {
 	
