@@ -36,11 +36,11 @@
 
         function draw(tstamp) {
 			  ctx.clearRect(0, 0, canvas.width, canvas.height);
-              ctx.font = "32px serif";
-			ctx.fillStyle = "blue";
+              ctx.font = "20px serif";
+			ctx.fillStyle = "black";
 
 			// Draw text at coordinates x=50, y=100
-			ctx.fillText((1.0*tstamp / 1000).toFixed(2), 50, 100);
+			ctx.fillText((1.0*tstamp / 1000).toFixed(2), 50, 50);
   
 			wl.drawme(ctx,1.0*tstamp/1000)
     
@@ -53,12 +53,14 @@
    //     requestAnimationFrame(draw);
       
       class Wheel{
-		constructor(cvs,X,Y,R,theta,omega,rpin)
-		{this.X=cvs.width*1/3; this.Y=cvs.height*1/2; this.R=cvs.height*0.3;this.omega=2*Math.PI/5;rpin=this.R*0.2;
-			this.theta=0;
+		constructor(cvs,X,Y,R,theta,perd,rpin)
+		{this.X=X; this.Y=Y; this.R=R;this.perd=perd;rpin=rpin;
+			this.theta=theta;
+			this.omega=2*Math.PI*1/this.perd
 			}
 			
 		drawme(ctx,tsec){
+			
 			this.theta= tsec * this.omega
 		//	console.log('theta= ',this.theta)
 			
@@ -89,6 +91,8 @@
 		}
 	 
   }
+  
+  		const wl=new Wheel(canvas,120 ,150,75,0.1,2,20)
         
  
 		
