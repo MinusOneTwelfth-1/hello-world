@@ -34,43 +34,19 @@
         // 1 revolution every 5 seconds (5000 milliseconds)
         const REVOLUTION_TIME = 5000; 
 
-        function draw(timestamp) {
-            // 1. Clear the canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        function draw(tstamp) {
+			  ctx.clearRect(0, 0, canvas.width, canvas.height);
+              ctx.font = "32px serif";
+			ctx.fillStyle = "blue";
 
-            // 2. Calculate the current angle based on time
-            // Progress goes from 0 to 1 every 5 seconds
-            const progress = (timestamp % REVOLUTION_TIME) / REVOLUTION_TIME;
-            // Convert progress to radians (2 * PI is a full circle)
-            //const angle = progress * 2 * Math.PI;
-/*
-            // 3. Draw the main outer circle
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-            ctx.strokeStyle = '#333333';
-            ctx.lineWidth = 4;
-            ctx.stroke();
-
-            // 4. Draw the rotating radial marker line
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            // Calculate end point of the line using trigonometry
-            const markerX = centerX + radius * Math.cos(angle);
-            const markerY = centerY + radius * Math.sin(angle);
-            ctx.lineTo(markerX, markerY);
-            ctx.strokeStyle = '#ff3333';
-            ctx.lineWidth = 6;
-            ctx.lineCap = 'round';
-            ctx.stroke();
-
-            // 5. Draw a center pivot point
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 8, 0, 2 * Math.PI);
-            ctx.fillStyle = '#333333';
-            ctx.fill();
-*/
-            // 6. Request the next animation frame
-          //  requestAnimationFrame(draw);
+			// Draw text at coordinates x=50, y=100
+			ctx.fillText((1.0*tstamp / 1000).toFixed(2), 50, 100);
+  
+			wl.drawme(ctx,1.0*tstamp/1000)
+    
+    
+     
+           requestAnimationFrame(draw);
         }
 
         // Start the animation loop
@@ -82,9 +58,9 @@
 			this.theta=0;
 			}
 			
-		drawme(ctx,tstamp){
-			this.theta=(tstamp % 1000)  * 2 * Math.PI  * this.omega
-			console.log('theta= ',this.theta)
+		drawme(ctx,tsec){
+			this.theta= tsec * this.omega
+		//	console.log('theta= ',this.theta)
 			
 			// 3. Draw the main outer circle
             ctx.beginPath();
@@ -109,31 +85,13 @@
             ctx.fillStyle = '#333333';
             ctx.fill();
             
-            requestAnimationFrame((t)=>{tt=t;wl.drawme(ctx,t);console.log(t % 1000);console.log(tt)})
+          //  requestAnimationFrame((t)=>{tt=t;wl.drawme(ctx,t);console.log(t % 1000);console.log(tt)})
 		}
 	 
   }
         
-      function draw(ctx)
-		{
-			ctx.beginPath();
-            ctx.moveTo(this.X, this.Y);
-            // Calculate end point of the line using trigonometry
-            const markerX = this.X + this.R * Math.cos(this.theta);
-            const markerY = this.Y + this.R * Math.sin(this.theta);
-            ctx.lineTo(markerX, markerY);
-            ctx.strokeStyle = '#ff3333';
-            ctx.lineWidth = 6;
-            ctx.lineCap = 'round';
-            ctx.stroke();
-
-            // 5. Draw a center pivot point
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, 8, 0, 2 * Math.PI);
-            ctx.fillStyle = '#333333';
-            ctx.fill();
-			
-		}
+ 
+		
     </script>
 </body>
 </html>
