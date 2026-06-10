@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- The most important tag for mobile compliance -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile-First Layout</title>
+    <style>
+        html {
+        font-size: 44px; 
+        /* Prevent font scaling in landscape while allowing manual user zoom */
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    text-size-adjust: none;
+    }
+
+        /* Mobile-First Base Styles */
+        body {
+            font-size: 44px;
+            font-family: sans-serif;
+            padding: 20px;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        #txtVidID {font-size: 20pt;}
+
+        input[type="text"] {
+          /* flex: 1; */
+         /* */
+            min-width: 15%;
+            flex-basis: 35%;
+        /*  */   
+            padding: 5px;
+            border: 4px solid #ccc;
+            border-radius: 24px;
+            font-size: 46px; /* Prevents iOS zoom on focus */
+        }
+
+        input[type="range"]{flex: 1; width: 100%;}
+
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 38px;
+        }
+
+        button:active {
+            background-color: #0056b3;
+        }
+
+              /* Fixed width for labels so inputs stay aligned */
+        label {
+            font-weight: bold;
+            min-width: 100px; 
+            padding: 4px;
+          /*  font-size: 40px; */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="input-group">
+        <label>IDD:&nbsp; &nbsp; </label>
+
+        <input type="text" value='fO_-esmcsv4' id='txtVidID'>
+        <button type="button" onclick='loadID()'>Load</button>
+    </div>
+
+    <div class="input-group">
+      <label>Start: </label>
+      <button type='button' onclick='incStart()' style='margin-left: 5px;'>+</button>
+       <button type='button' onclick='decStart()'>-</button>
+
+        <input type="text" value='3.67' id='txtStart'>
+        <button type="button" onclick='setStart()'>Set</button>
+    </div>
+
+    <div class="input-group">
+        <label>Stop: </label>
+        <button type='button' onclick='incStop()' style='margin-left: 5px;'>+</button>
+        <button type='button' onclick='decStop()'>-</button>
+        <input type="text" value='36.02' id='txtStop'>
+        <button type="button" onclick='setStop()'>Set</button>
+        
+    </div>
+
+    <div class="input-group">
+      <label id='lblLength'>33.35</label><button onclick='stopLoop()'>Full</button>
+      <button onclick='startLoop()'>Loop</button>
+    </div>
+    <input type='range'><br><br>
+     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
+
+  <div id=myList>
+     <p onclick="goPlay('fO_-esmcsv4')"> 1. Sound of Silence </p>
+     <p onclick="goPlay('MWjaK_nW72E','32.91','49.09')"> 2. Chupke Chupke Raat Din</p>
+     <p onclick="goPlay('Ds8nabK0vE8','9.33','44.79')"> 3. Gulon Mein (Mehdi H) </p>
+     <p onclick="goPlay('Xc6uwbXpmUY')"> 4. Ranjish Hi (Mehdi H.) </p>
+     <p onclick="goPlay('LrVQSy7sYro')"> 5. Samhalera (Meena N.) </p>
+     <p onclick="goPlay('RhfHed14cNc')"> 6. Hey Jude </p>
+     <p onclick="goPlay('o_fA-Ls4RXk')"> 7. Exsultate (Muehlemann) </p>
+     <p onclick="goPlay('jtzioa3ddKE')"> 8. Rafta Rafta (Mehdi H.) </p>
+     <p onclick="goPlay('oW6tBV7T6Cg')"> 9. Clementine (Frank Sunders)</p>
+     <p onclick="goPlay('h-vaqAcC5Tg')"> 10. Clementine (Pete Seeger)</p>
+     <p onclick="goPlay('BvRUblJ_hqM')"> 11. Delilah (Tom Jones)</p>
+    <p onclick="goPlay('OndO1zRy5pE')"> 12. This is my Song (Humperdinck)</p>
+  </div>
+  
+
+    <script>
+      var myTimer;
+      const $ = document.querySelector.bind(document);
+      txtVidID=document.getElementById('txtVidID')
+      txtStart=document.getElementById('txtStart')
+      txtStart=$('#txtStart')
+      txtStop=$("#txtStop")
+      spnLength=$('#spnLength') 
+      lblLength=$('#lblLength')
+      
+      var objPlayerReadyEvent
+
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        console.log('onYouTubeIfrmeAPIReady')
+        player = new YT.Player('player', {
+          height: '450px',
+          width: '100%',
+          videoId: 'fO_-esmcsv4',
+          playerVars: {
+            'playsinline': 1
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+        console.log('onYouTubeIfrmeAPIReady')
+
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        console.log('playerReady: '+ event.target )
+        
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      
+      function onPlayerStateChange(event) {
+        console.log('stateChange: ' + event.data)
+        if (event.data == YT.PlayerState.PLAYING ) {
+         // setTimeout(stopVideo, 6000);
+          
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+     // player.loadVideoById(txtVidID.value)
+      function loadID(){
+        stopLoop()
+        console.log('loadID'); player.loadVideoById(txtVidID.value);
+        stopLoop();
+      }
+
+      function setStart(){txtStart.value=player.getCurrentTime().toFixed(2)
+       if(1.0*txtStop.value<1.0*txtStart.value){txtStop.value=1.0*txtStart.value+5.0}
+      lblLength.textContent= (1.0*txtStop.value-1.0*txtStart.value).toFixed(2)
+      stopLoop()
+       }
+      
+      function setStop(){txtStop.value=player.getCurrentTime().toFixed(2)
+      // spnLength.textContent=(1.0 * txtStop.value - 1.0 * txtStart.value ).toFixed(2)
+      lblLength.textContent=( 1.0*txtStop.value-1.0*txtStart.value).toFixed(2)
+      startLoop()
+       }
+
+      function incStart(){txtStart.value=1.0*txtStart.value+0.25; player.seekTo(txtStart.value)
+      if(1.0*txtStop.value<1.0*txtStart.value){txtStop.value=1.0*txtStart.value+5.0}
+      lblLength.textContent= (1.0*txtStop.value-1.0*txtStart.value).toFixed(2)
+      startLoop()
+      }
+
+       function decStart(){txtStart.value=1.0*txtStart.value-0.25; player.seekTo(txtStart.value)
+       lblLength.textContent= (1.0*txtStop.value-1.0*txtStart.value).toFixed(2)
+       }
+
+      function incStop(){
+       // stopLoop()
+        txtStop.value=1.0*txtStop.value+0.25; 
+        lblLength.textContent=( 1.0*txtStop.value-1.0*txtStart.value).toFixed(2)
+      startLoop()
+      
+      }
+
+
+      function decStop(){txtStop.value=1.0*txtStop.value-0.25; 
+      lblLength.textContent= (1.0*txtStop.value-1.0*txtStart.value).toFixed(2)
+      }
+ 
+  function startLoop(){
+    clearInterval(myTimer)
+    player.seekTo(txtStart.value)
+    
+    myTimer=setInterval(function(){console.log("seek");
+player.seekTo(txtStart.value); },1000.*lblLength.textContent);
+console.log('myTimer: '+myTimer)
+  lblLength.style.border='solid black 4px'
+       }
+
+function stopLoop(){console.log('myTimer: ' + myTimer); clearInterval(myTimer)
+lblLength.style.border='none'
+}
+
+function goPlay(vid,startT,stopT){
+  if(startT){txtStart.value=startT}
+  if(stopT){txtStop.value=stopT}
+  lblLength.textContent=( 1.0*txtStop.value-1.0*txtStart.value).toFixed(2)
+  player.loadVideoById(vid)
+  player.seekTo(txtStart.value);
+  startLoop()
+  
+  }
+
+theList = [
+
+["1", ""]
+
+
+
+
+]
+
+ function pauz(){console.log('aaa');debugger;}
+
+//# sourceURL=https://praveen.com/praveen.js
+</script>
+
+</body>
+</html>
