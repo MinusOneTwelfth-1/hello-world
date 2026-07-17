@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanical Parametric Amplifier Analog</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f7;
+            color: #1d1d1f;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 { margin-bottom: 5px; font-size: 24px; text-align: center;}
+        .description { max-width: 800px; font-size: 14px; color: #515154; line-height: 1.5; text-align: center; margin-bottom: 20px; }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 1000px;
+            width: 100%;
+        }
+        .panel {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 300px;
+        }
+        .canvas-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1.2;
+        }
+        canvas {
+            background: #fafafa;
+            border: 1px solid #e5e5e7;
+            border-radius: 8px;
+            width: 100%;
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="range"] {
+            flex: 1;
+        }
+        .val-disp {
+            font-family: monospace;
+            width: 50px;
+            text-align: right;
+            font-size: 13px;
+        }
+        .stats {
+            margin-top: 15px;
+            font-size: 13px;
+            background: #f5f5f7;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+        .btn {
+            background: #0071e3;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .btn:hover { background: #0077ed; }
+        .btn-reset { background: #86868b; }
+        .btn-reset:hover { background: #98989d; }
+    </style>
+</head>
+<body>
+
+    <h1>Mechanical Parametric Amplifier Analog</h1>
+    <div class="description">
+        This simulation shows a mass driven by a weak electromagnet (Input Signal). By periodically stiffening and softening the spring (Pump) at roughly <strong>twice</strong> the resonant frequency, energy is transferred into the system, massively amplifying the weak input signal.
+    </div>
+
+    <div class="container">
+        <!-- Controls Panel -->
+        <div class="panel">
+            <h3>System Controls</h3>
+            
+            <div class="control-group">
+                <label>Mass (m)</label>
+                <div class="slider-container">
+                    <input type="range" id="param-m" min="0.5" max="5.0" step="0.1" value="2.0">
+                    <span class="val-disp" id="val-m">2.0</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Base Stiffness (k₀)</label>
+                <div class="slider-container">
+                    <input type="range" id="param-k" min="5" max="50" step="1" value="20">
+                    <span class="val-disp" id="val-k">20</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Damping (b) [Friction]</label>
+                <div class="slider-container">
+                    <input type="range" id="param-b" min="0.0" max="0.5" step="0.01" value="0.27">
+                    <span class="val-disp" id="val-b">0.27</span>
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #e5e5e7; margin: 20px 0;">
+
+            <div class="control-group">
+                <label>Pump Amplitude (Δk) [Modulation Depth]</label>
+                <div class="slider-container">
+                    <input type="range" id="param-dk" min="0" max="15" step="0.5" value="2">
+                    <span class="val-disp" id="val-dk">2.0</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Pump Frequency Multiplier (× f₀)</label>
+                <div class="slider-container">
+                    <input type="range" id="param-fp-mult" min="1.5" max="2.5" step="0.01" value="2.00">
+                    <span class="val-disp" id="val-fp-mult">2.0</span>
+                </div>
+                <small style="color:#86868b; font-size:11px;">Set slightly off 2.00 to view non-degenerate "Idler" beats.</small>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #e5e5e7; margin: 20px 0;">
+
+            <div class="control-group">
+                <label>Electromagnet Input Force (Fᵢₙ)</label>
+                <div class="slider-container">
+                    <input type="range" id="param-fext" min="0" max="5" step="0.1" value="1.5">
+                    <span class="val-disp" id="val-fext">1.5</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Input Signal Frequency (fᵢₙ)</label>
+                <div class="slider-container">
+                    <input type="range" id="param-fs" min="0.2" max="2.0" step="0.01" value="0.48">
+                    <span class="val-disp" id="val-fs">0.48</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button class="btn" id="btn-toggle-pump">Turn Pump ON</button>
+                <button class="btn btn-reset" id="btn-clear">Clear Scope</button>
+            </div>
+
+            <div class="stats">
+                Resonant Freq (f₀): <span id="stat-f0">0.50</span> Hz<br>
+                Actual Pump Freq (fₚ): <span id="stat-fp">1.01</span> Hz<br>
+                Implied Idler (fₚ - fᵢₙ): <span id="stat-fi">0.53</span> Hz
+            </div>
+        </div>
+
+        <!-- Visuals Panel -->
+        <div class="panel canvas-panel">
+            <h3>Mechanical Scope</h3>
+            <canvas id="simCanvas" width="500" height="220"></canvas>
+            <h3 style="margin-top: 15px; margin-bottom: 5px;">Waveform Display</h3>
+            <canvas id="chartCanvas" width="500" height="180"></canvas>
+        </div>
+    </div>
+<!-- end of part 1 -->
+
+
+
+    <script>
+        const simCanvas = document.getElementById('simCanvas');
+        const ctxSim = simCanvas.getContext('2d');
+        const chartCanvas = document.getElementById('chartCanvas');
+        const ctxChart = chartCanvas.getContext('2d');
+
+        // State variables
+        let m = 2.0;
+        let k0 = 20.0;
+        let b = 0.27;
+        let dk = 2.0;
+        let fpMult = 2.0;
+        let Fext0 = 1.5;
+        let fs = 0.48;
+        let pumpActive = false;
+
+        let x = 0.0; // Displacement from equilibrium
+        let v = 0.0; // Velocity
+        let t = 0.0;
+
+        let history = [];
+        const maxHistory = 500;
+
+        // UI Elements
+        const inputs = {
+            m: document.getElementById('param-m'),
+            k: document.getElementById('param-k'),
+            b: document.getElementById('param-b'),
+            dk: document.getElementById('param-dk'),
+            fpMult: document.getElementById('param-fp-mult'),
+            fext: document.getElementById('param-fext'),
+            fs: document.getElementById('param-fs')
+        };
+
+        const displays = {
+            m: document.getElementById('val-m'),
+            k: document.getElementById('val-k'),
+            b: document.getElementById('val-b'),
+            dk: document.getElementById('val-dk'),
+            fpMult: document.getElementById('val-fp-mult'),
+            fext: document.getElementById('val-fext'),
+            fs: document.getElementById('val-fs'),
+            f0: document.getElementById('stat-f0'),
+            fp: document.getElementById('stat-fp'),
+            fi: document.getElementById('stat-fi')
+        };
+
+        function updateParameters() {
+            m = parseFloat(inputs.m.value);
+            k0 = parseFloat(inputs.k.value);
+            b = parseFloat(inputs.b.value);
+            dk = pumpActive ? parseFloat(inputs.dk.value) : 0;
+            fpMult = parseFloat(inputs.fpMult.value);
+            Fext0 = parseFloat(inputs.fext.value);
+            fs = parseFloat(inputs.fs.value);
+
+            // Update value readouts
+            displays.m.textContent = m.toFixed(1);
+            displays.k.textContent = k0.toFixed(0);
+            displays.b.textContent = b.toFixed(2);
+            displays.dk.textContent = parseFloat(inputs.dk.value).toFixed(1);
+            displays.fpMult.textContent = fpMult.toFixed(2);
+            displays.fext.textContent = Fext0.toFixed(1);
+            displays.fs.textContent = fs.toFixed(2);
+
+            // Calculations
+            let omega0 = Math.sqrt(k0 / m);
+            let f0 = omega0 / (2 * Math.PI);
+            let fp = f0 * fpMult;
+
+            displays.f0.textContent = f0.toFixed(2);
+            displays.fp.textContent = fp.toFixed(2);
+            displays.fi.textContent = Math.abs(fp - fs).toFixed(2);
+        }
+
+        // Attach listeners
+        Object.values(inputs).forEach(input => input.addEventListener('input', updateParameters));
+        
+        document.getElementById('btn-toggle-pump').addEventListener('click', (e) => {
+            pumpActive = !pumpActive;
+            e.target.textContent = pumpActive ? "Turn Pump OFF" : "Turn Pump ON";
+            e.target.style.background = pumpActive ? "#0071e3" : "#34c759";
+            updateParameters();
+        });
+
+        document.getElementById('btn-clear').addEventListener('click', () => {
+            history = [];
+            x = 0; v = 0; t = 0;
+        });
+
+
+<!-- end of part 2 -->
+
+
+        // Physics loop
+        const dt = 0.05; 
+        function stepPhysics() {
+            let omega0 = Math.sqrt(k0 / m);
+            let f0 = omega0 / (2 * Math.PI);
+            let fp = f0 * fpMult;
+            let omegaP = 2 * Math.PI * fp;
+            let omegaS = 2 * Math.PI * fs;
+
+            // Parametric modulation of k
+            let currentK = k0 + dk * Math.sin(omegaP * t);
+  
+            // External force (Electromagnet input)
+            let Fext = Fext0 * Math.sin(omegaS * t);
+
+            // Physics Equations (F = ma -> a = F/m)
+            let SpringForce = -currentK * x;
+            let DampingForce = -b * v;
+            let TotalForce = SpringForce + DampingForce + Fext;
+            
+            let a = TotalForce / m;
+            v += a * dt;
+            x += v * dt;
+            t += dt;
+
+            // Record history
+            history.push({ x: x, Fext: Fext, dk: currentK - k0 });
+            if (history.length > maxHistory) history.shift();
+        }
+
+        function drawSpring(ctx, startX, startY, endX, endY, coils) {
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            let dx = endX - startX;
+            let dy = endY - startY;
+            let len = Math.sqrt(dx*dx + dy*dy);
+            
+            for(let i=0; i<=coils; i++) {
+                let fraction = i / coils;
+                let curX = startX + dx * fraction;
+                let curY = startY + dy * fraction;
+                if (i > 0 && i < coils) {
+                    let offset = (i % 2 === 0 ? 1 : -1) * 15;
+                    // perpendicular vector offset
+                    curX += (-dy/len) * offset;
+                    curY += (dx/len) * offset;
+                }
+                ctx.lineTo(curX, curY);
+            }
+            ctx.stroke();
+        }
+
+        function render() {
+            // 1. Render Simulation Box
+            ctxSim.clearRect(0, 0, simCanvas.width, simCanvas.height);
+            
+            let midY = simCanvas.height / 2;
+            let centerX = simCanvas.width / 2;
+            let massSize = 40;
+            let currentXPos = centerX + x * 15; // scale factor for visual drawing
+
+            // Draw ceiling/anchor
+            ctxSim.fillStyle = "#86868b";
+            ctxSim.fillRect(20, midY - 40, 10, 80);
+
+            // Draw Spring
+            ctxSim.strokeStyle = "#1d1d1f";
+            ctxSim.lineWidth = 2;
+            drawSpring(ctxSim, 30, midY, currentXPos - massSize/2, midY, 15);
+
+            // Draw Mass
+            ctxSim.fillStyle = "#0071e3";
+            ctxSim.fillRect(currentXPos - massSize/2, midY - massSize/2, massSize, massSize);
+            ctxSim.fillStyle = "white";
+            ctxSim.font = "12px sans-serif";
+            ctxSim.fillText("m", currentXPos - 5, midY + 4);
+
+            // Draw Electromagnet Input Source
+            let magX = simCanvas.width - 40;
+            ctxSim.fillStyle = "#ff453a";
+            ctxSim.fillRect(magX, midY - 25, 20, 50);
+            ctxSim.fillStyle = "white";
+            ctxSim.font = "10px sans-serif";
+            ctxSim.fillText("EM", magX + 2, midY + 4);
+
+            // Magnetic Force flux lines visual indicator
+            if (Fext0 > 0 && history.length > 0) {
+                let currentF = history[history.length - 1].Fext;
+                if (Math.abs(currentF) > 0.2) {
+                    ctxSim.strokeStyle = `rgba(255, 69, 58, ${Math.min(Math.abs(currentF)/Fext0, 1)})`;
+                    ctxSim.lineWidth = 1.5;
+                    ctxSim.beginPath();
+                    ctxSim.arc(magX - 10, midY, 20, -Math.PI/3, Math.PI/3);
+                    ctxSim.stroke();
+                }
+            }
+
+            // 2. Render Scope Charts
+            ctxChart.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+            
+            // Draw axis lines
+            ctxChart.strokeStyle = "#e5e5e7";
+            ctxChart.lineWidth = 1;
+            ctxChart.beginPath();
+            ctxChart.moveTo(0, chartCanvas.height/2);
+            ctxChart.lineTo(chartCanvas.width, chartCanvas.height/2);
+            ctxChart.stroke();
+
+            if (history.length > 1) {
+                // Plot Displacement Wave (Blue)
+                ctxChart.strokeStyle = "#0071e3";
+                ctxChart.lineWidth = 2;
+                ctxChart.beginPath();
+                for(let i=0; i<history.length; i++) {
+                    let pixelX = (i / maxHistory) * chartCanvas.width;
+                    let pixelY = chartCanvas.height/2 - (history[i].x * 12);
+                    if (i === 0) ctxChart.moveTo(pixelX, pixelY);
+                    else ctxChart.lineTo(pixelX, pixelY);
+                }
+                ctxChart.stroke();
+
+                // Plot Input EM Signal Wave (Red)
+                ctxChart.strokeStyle = "rgba(255, 69, 58, 0.6)";
+                ctxChart.lineWidth = 1.5;
+                ctxChart.beginPath();
+                for(let i=0; i<history.length; i++) {
+                    let pixelX = (i / maxHistory) * chartCanvas.width;
+                    let pixelY = chartCanvas.height/2 - (history[i].Fext * 8);
+                    if (i === 0) ctxChart.moveTo(pixelX, pixelY);
+                    else ctxChart.lineTo(pixelX, pixelY);
+                }
+                ctxChart.stroke();
+            }
+
+            // Legend labels
+            ctxChart.fillStyle = "#0071e3";
+            ctxChart.font = "11px sans-serif";
+            ctxChart.fillText("━ Amplified Mass Motion (Output)", 10, 20);
+            ctxChart.fillStyle = "rgba(255, 69, 58, 0.9)";
+            ctxChart.fillText("━ Electromagnet Drive (Input Signal)", 10, 36);
+        }
+
+        function loop() {
+            stepPhysics();
+            render();
+            requestAnimationFrame(loop);
+        }
+
+        // Initialize and Start
+        updateParameters();
+        loop();
+    </script>
+</body>
+</html>
+
