@@ -82,14 +82,14 @@ const simCanvas = sRoot.getElementById('simCanvas');
         // Attach listeners
         Object.values(inputs).forEach(input => input.addEventListener('input', updateParameters));
         
-        document.getElementById('btn-toggle-pump').addEventListener('click', (e) => {
+        sRoot.getElementById('btn-toggle-pump').addEventListener('click', (e) => {
             pumpActive = !pumpActive;
             e.target.textContent = pumpActive ? "Turn Pump OFF" : "Turn Pump ON";
             e.target.style.background = pumpActive ? "#0071e3" : "#34c759";
             updateParameters();
         });
 
-        document.getElementById('btn-clear').addEventListener('click', () => {
+        sRoot.getElementById('btn-clear').addEventListener('click', () => {
             history = [];
             x = 0; v = 0; t = 0;
         });
