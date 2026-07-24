@@ -92,7 +92,7 @@ for (kk in json){
             displays.fi.textContent = Math.abs(fp - fs).toFixed(2);
         }
 
-
+     function sendInputValue(id,val){console.log(`id: ${id}, val: ${val}`)
         // Attach listeners
         Object.values(inputs).forEach(input => input.addEventListener('input', 
                                               (e) =>
