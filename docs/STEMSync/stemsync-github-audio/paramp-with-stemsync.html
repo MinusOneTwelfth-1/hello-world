@@ -227,7 +227,7 @@ if(role=='Host'){initiateBtn.disabled=false; joinBtn.disabled=true;
     console.log('looking for JSON in msg: '+event.data )  
     jsn=JSON.parse(event.data);
     console.log('parsed ok.. setting param')
-    setParam(jsn)
+    setFromJSON(jsn)
 
   } catch (e) {
     console.log('caught json error')
