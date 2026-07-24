@@ -93,6 +93,9 @@ for (kk in json){
         }
 
      function sendInputValue(id,val){console.log(`id: ${id}, val: ${val}`)
+                                    }
+
+
         // Attach listeners
         Object.values(inputs).forEach(input => input.addEventListener('input', 
                                               (e) =>
