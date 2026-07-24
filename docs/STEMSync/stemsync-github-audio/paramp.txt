@@ -90,9 +90,9 @@
         <!-- Visuals Panel -->
         <div class="panel canvas-panel">
             <h3>Mechanical Scope</h3>
-            <canvas id="simCanvas" width="500" height="220"></canvas>
+            <canvas id="simCanvas" width="500" height="200"></canvas>
             <h3 style="margin-top: 15px; margin-bottom: 5px;">Waveform Display</h3>
-            <canvas id="chartCanvas" width="500" height="180"></canvas>
+            <canvas id="chartCanvas" width="500" height="250"></canvas>
         </div>
     </div>
 
