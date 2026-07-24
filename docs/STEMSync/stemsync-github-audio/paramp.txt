@@ -2,7 +2,8 @@
 ============   ONLY PART HTML for paramp -- to be used in shadow root within stemsync.html ========
 -->
     
-  
+  <link rel="stylesheet" href="paramp.css">
+
     <h1>Mechanical Parametric Amplifier Analog</h1>
     <div class="description">
         This simulation shows a mass driven by a weak electromagnet (Input Signal). By periodically stiffening and softening the spring (Pump) at roughly <strong>twice</strong> the resonant frequency, energy is transferred into the system, massively amplifying the weak input signal.
