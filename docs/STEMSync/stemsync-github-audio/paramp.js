@@ -51,6 +51,17 @@ const simCanvas = sRoot.getElementById('simCanvas');
             fi: sRoot.getElementById('stat-fi')
         };
 
+        function setFromJSON(json){
+for (kk in json){
+    if(inputs.hasOwnProperty(kk)) {
+        console.log(kk)
+        console.log(inputs[kk])
+        inputs[kk].value=json[kk]; console.log(json[kk]+' --> '+inputs[kk].value)
+                    }
+                }
+     updateParameters()
+}
+
         function updateParameters() {
             m = parseFloat(inputs.m.value);
             k0 = parseFloat(inputs.k.value);
