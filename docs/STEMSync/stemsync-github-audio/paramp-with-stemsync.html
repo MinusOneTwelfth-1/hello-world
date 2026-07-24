@@ -293,11 +293,11 @@ async function getTextFromCell(url) {
 }
 
 let laburl=googleScriptURL + "?jcell=lab.html";
- laburl = "https://minusonetwelfth-1.github.io/hello-world/STEMSync/stemsync-github-audio/lab.txt"
+ laburl = "https://minusonetwelfth-1.github.io/hello-world/STEMSync/stemsync-github-audio/paramp.txt"
 getTextFromCell(laburl)
 .then( e => {return e.text()} ).then( e => {
 shad.shadowRoot.innerHTML=e 
-labScript.src="lab.js"
+// labScript.src="paramp.js"
 })
 
 document.title="STEMSync Guest"
