@@ -29,26 +29,26 @@ const simCanvas = sRoot.getElementById('simCanvas');
 
         // UI Elements
         const inputs = {
-            m: document.getElementById('param-m'),
-            k: document.getElementById('param-k'),
-            b: document.getElementById('param-b'),
-            dk: document.getElementById('param-dk'),
-            fpMult: document.getElementById('param-fp-mult'),
-            fext: document.getElementById('param-fext'),
-            fs: document.getElementById('param-fs')
+            m:sRoot.getElementById('param-m'),
+            k: sRoot.getElementById('param-k'),
+            b: sRoot.getElementById('param-b'),
+            dk: sRoot.getElementById('param-dk'),
+            fpMult: sRoot.getElementById('param-fp-mult'),
+            fext: sRoot.getElementById('param-fext'),
+            fs: sRoot.getElementById('param-fs')
         };
 
         const displays = {
-            m: document.getElementById('val-m'),
-            k: document.getElementById('val-k'),
-            b: document.getElementById('val-b'),
-            dk: document.getElementById('val-dk'),
-            fpMult: document.getElementById('val-fp-mult'),
-            fext: document.getElementById('val-fext'),
-            fs: document.getElementById('val-fs'),
-            f0: document.getElementById('stat-f0'),
-            fp: document.getElementById('stat-fp'),
-            fi: document.getElementById('stat-fi')
+            m: sRoot.getElementById('val-m'),
+            k: sRoot.getElementById('val-k'),
+            b: sRoot.getElementById('val-b'),
+            dk: sRoot.getElementById('val-dk'),
+            fpMult: sRoot.getElementById('val-fp-mult'),
+            fext: sRoot.getElementById('val-fext'),
+            fs: sRoot.getElementById('val-fs'),
+            f0: sRoot.getElementById('stat-f0'),
+            fp: sRoot.getElementById('stat-fp'),
+            fi: sRoot.getElementById('stat-fi')
         };
 
         function updateParameters() {
