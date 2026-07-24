@@ -92,10 +92,12 @@ for (kk in json){
             displays.fi.textContent = Math.abs(fp - fs).toFixed(2);
         }
 
+
         // Attach listeners
         Object.values(inputs).forEach(input => input.addEventListener('input', 
-                                              () =>
-                                                      { sendInputValue(input.id,input.value);
+                                              (e) =>
+                                                      { console.log(e.target)
+                                                              sendInputValue(input.id,input.value);
                                                         updateParameters();
                                                       }
                                                                      )
