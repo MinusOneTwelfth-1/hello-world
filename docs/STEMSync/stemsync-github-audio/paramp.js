@@ -61,12 +61,12 @@ const simCanvas = sRoot.getElementById('simCanvas');
             fs = parseFloat(inputs.fs.value);
 
             // Update value readouts
-            displays.m.textContent = m.toFixed(1);
-            displays.k.textContent = k0.toFixed(0);
+            displays.m.textContent = m.toFixed(2);
+            displays.k.textContent = k0.toFixed(2);
             displays.b.textContent = b.toFixed(2);
-            displays.dk.textContent = parseFloat(inputs.dk.value).toFixed(1);
+            displays.dk.textContent = parseFloat(inputs.dk.value).toFixed(2);
             displays.fpMult.textContent = fpMult.toFixed(2);
-            displays.fext.textContent = Fext0.toFixed(1);
+            displays.fext.textContent = Fext0.toFixed(2);
             displays.fs.textContent = fs.toFixed(2);
 
             // Calculations
