@@ -297,7 +297,7 @@ let laburl=googleScriptURL + "?jcell=lab.html";
 getTextFromCell(laburl)
 .then( e => {return e.text()} ).then( e => {
 shad.shadowRoot.innerHTML=e 
-// labScript.src="paramp.js"
+ labScript.src="paramp.js"
 })
 
 document.title="STEMSync Guest"
