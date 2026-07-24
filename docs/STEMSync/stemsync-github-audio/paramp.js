@@ -51,12 +51,14 @@ const simCanvas = sRoot.getElementById('simCanvas');
             fi: sRoot.getElementById('stat-fi')
         };
 
-        function setFromJSON(json){
+        function setFromJSON(Json){
+const json=JSON.parse(Json);        
 for (kk in json){
-    if(inputs.hasOwnProperty(kk)) {
-        console.log(kk)
-        console.log(inputs[kk])
-        inputs[kk].value=json[kk]; console.log(json[kk]+' --> '+inputs[kk].value)
+      console.log(kk)
+    if(sRoot.getElementById(kk)) {
+        let inp=sRoot.getElementById(kk)
+        console.log(inp)
+        inp.value=json[kk]; console.log(json[kk]+' --> '+inp.value)
                     }
                 }
      updateParameters()
@@ -91,8 +93,12 @@ for (kk in json){
         }
 
         // Attach listeners
-        Object.values(inputs).forEach(input => input.addEventListener('input', updateParameters));
-        
+        Object.values(inputs).forEach(input => input.addEventListener('input', 
+                                              () =>
+                                                      { sendInputValue(input.id,input.value);
+                                                        updateParameters();
+                                                      }
+                                                                     )
         sRoot.getElementById('btn-toggle-pump').addEventListener('click', (e) => {
             pumpActive = !pumpActive;
             e.target.textContent = pumpActive ? "Turn Pump OFF" : "Turn Pump ON";
