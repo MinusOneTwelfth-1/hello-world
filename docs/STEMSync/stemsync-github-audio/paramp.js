@@ -1,6 +1,10 @@
- const simCanvas = document.getElementById('simCanvas');
+//shadowDiv.shadowRoot.querySelector("#simCanvas")
+        sRoot=shadowDiv.shadowRoot;
+
+const simCanvas = sRoot.getElementById('simCanvas');
+
         const ctxSim = simCanvas.getContext('2d');
-        const chartCanvas = document.getElementById('chartCanvas');
+        const chartCanvas = sRoot.getElementById('chartCanvas');
         const ctxChart = chartCanvas.getContext('2d');
 
         // State variables
