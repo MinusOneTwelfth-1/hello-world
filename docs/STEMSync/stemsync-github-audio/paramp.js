@@ -92,7 +92,12 @@ for (kk in json){
             displays.fi.textContent = Math.abs(fp - fs).toFixed(2);
         }
 
-     function sendInputValue(id,val){console.log(`id: ${id}, val: ${val}`)
+     function sendInputValue(id,val){ sendInputValue.counter = (sendInputValue.counter || 0 ) +1;
+                                     if(sendInputValue.counter >= 10){
+                                     console.log(`id: ${id}, val: ${val}`);
+                                     sendInputValue.counter = 0
+                                     }
+                                     
                                     }
 
 
