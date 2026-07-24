@@ -1,5 +1,8 @@
 //shadowDiv.shadowRoot.querySelector("#simCanvas")
-        sRoot=shadowDiv.shadowRoot;
+console.log("===== paramp.js =======")
+console.log("document.title = " + document.title)
+
+sRoot=shadowDiv.shadowRoot;
 
 const simCanvas = sRoot.getElementById('simCanvas');
 
