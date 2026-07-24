@@ -99,6 +99,7 @@ for (kk in json){
                                                         updateParameters();
                                                       }
                                                                      )
+                                     )
         sRoot.getElementById('btn-toggle-pump').addEventListener('click', (e) => {
             pumpActive = !pumpActive;
             e.target.textContent = pumpActive ? "Turn Pump OFF" : "Turn Pump ON";
