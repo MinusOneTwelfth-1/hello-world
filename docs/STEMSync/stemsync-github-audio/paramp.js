@@ -102,12 +102,16 @@ for (kk in Json){
                                      sendInputValue.counter = 0
                                      
                                      try{  dataChannel.send(JSON.stringify( jsn  ))  } 
-                                    catch{ // console.log("dataChannel problem")
+                                    catch{  console.log("dataChannel problem")
                                          }
                                      }
                         else {
                              sendInputValue.timR =    setTimeout(
                                          (idd, vall) => {console.log(`timeout: id= ${idd} , val= ${vall}`);
+                                                        try{  dataChannel.send(JSON.stringify( jsn  ))  } 
+                                                        catch{ 
+                                                                 console.log("dataChannel problem")  
+                                                             }
                                                         }, 150,id, val
                                             ) 
                               }
