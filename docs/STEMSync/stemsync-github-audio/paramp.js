@@ -98,7 +98,7 @@ for (kk in Json){
                        // console.log(jsn)
                         if(sendInputValue.counter >= 10)
                                    {
-                                   //  console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
+                                     console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
                                      sendInputValue.counter = 0
                                      
                                      try{  dataChannel.send(JSON.stringify( jsn  ))  } 
