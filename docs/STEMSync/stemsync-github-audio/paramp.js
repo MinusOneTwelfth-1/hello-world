@@ -51,14 +51,14 @@ const simCanvas = sRoot.getElementById('simCanvas');
             fi: sRoot.getElementById('stat-fi')
         };
 
-        function setFromJSON(Json){
-const json=JSON.parse(Json);        
-for (kk in json){
+function setFromJSON(Json){
+//const json=JSON.parse(Json);        
+for (kk in Json){
       console.log(kk)
     if(sRoot.getElementById(kk)) {
         let inp=sRoot.getElementById(kk)
         console.log(inp)
-        inp.value=json[kk]; console.log(json[kk]+' --> '+inp.value)
+        inp.value=Json[kk]; console.log(Json[kk]+' --> '+inp.value)
                     }
                 }
      updateParameters()
