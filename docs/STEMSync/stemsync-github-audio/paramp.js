@@ -94,8 +94,9 @@ for (kk in Json){
 
      function sendInputValue(id,val){ sendInputValue.counter = (sendInputValue.counter || 0 ) +1;
                                      if(sendInputValue.counter >= 10){
-                                     console.log(`id: ${id}, val: ${val}`);
+                                     console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
                                      sendInputValue.counter = 0
+                                      dataChannel.sendmessage(JSON.stringify({id: }))       
                                      }
                                      
                                     }
@@ -104,7 +105,7 @@ for (kk in Json){
         // Attach listeners
         Object.values(inputs).forEach(input => input.addEventListener('input', 
                                               (e) =>
-                                                      { console.log(e.target)
+                                                      {// console.log(e.target)
                                                               sendInputValue(input.id,input.value);
                                                         updateParameters();
                                                       }
