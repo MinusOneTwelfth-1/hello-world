@@ -98,7 +98,7 @@ for (kk in Json){
                        // console.log(jsn)
                         if(sendInputValue.counter >= 10)
                                    {
-                                     console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
+                                   //  console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
                                      sendInputValue.counter = 0
                                      
                                      try{  dataChannel.send(JSON.stringify( jsn  ))  } 
@@ -106,7 +106,7 @@ for (kk in Json){
                                      }
                         else {
                              sendInputValue.timR =    setTimeout(
-                                         (idd, vall) => {console.log(`id= ${idd} , val= ${vall}`);
+                                         (idd, vall) => {console.log(`timeout: id= ${idd} , val= ${vall}`);
                                                         }, 150,id, val
                                             ) 
                               }
