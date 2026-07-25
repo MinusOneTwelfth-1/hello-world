@@ -92,15 +92,23 @@ for (kk in Json){
             displays.fi.textContent = Math.abs(fp - fs).toFixed(2);
         }
 
-     function sendInputValue(id,val){ sendInputValue.counter = (sendInputValue.counter || 0 ) +1;
-                                     if(sendInputValue.counter >= 10){
+     function sendInputValue(id,val){  let sendInputValue.kvpair={};
+                        sendInputValue.counter = (sendInputValue.counter || 0 ) +1;
+                        if(sendInputValue.counter >= 10)
+                                   {
                                      console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
                                      sendInputValue.counter = 0
-                                    jsn={[id]: val }
-                                   console.log(jsn)
-                                    try{  dataChannel.send(JSON.stringify( jsn  ))  } 
-                                catch{ console.log("dataChannel problem")}
+                                     jsn={[id]: val }
+                                     console.log(jsn)
+                                     try{  dataChannel.send(JSON.stringify( jsn  ))  } 
+                                     catch{ console.log("dataChannel problem")}
                                      }
+                        else {
+                                 setTimeout(
+                                         (e,zq) => {console.log(e);
+                                         console.log(zq)}, 2000,"a",1.23
+                                            ) 
+                              }
                                      
                                     }
 
