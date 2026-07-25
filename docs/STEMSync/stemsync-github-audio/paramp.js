@@ -92,20 +92,20 @@ for (kk in Json){
             displays.fi.textContent = Math.abs(fp - fs).toFixed(2);
         }
 
-     function sendInputValue(id,val){  sendInputValue.kvpair={};
+     function sendInputValue(id,val){  clearInterval(sendInputValue.timR)
                         sendInputValue.counter = (sendInputValue.counter || 0 ) +1;
                         jsn={[id]: val }
-                        console.log(jsn)
+                       // console.log(jsn)
                         if(sendInputValue.counter >= 10)
                                    {
                                      console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
                                      sendInputValue.counter = 0
                                      
                                      try{  dataChannel.send(JSON.stringify( jsn  ))  } 
-                                     catch{ console.log("dataChannel problem")}
+                                 //    catch{ console.log("dataChannel problem")}
                                      }
                         else {
-                                 setTimeout(
+                             sendInputValue.timR =    setTimeout(
                                          (idd, vall) => {console.log(`id= ${idd} , val= ${vall}`);
                                                         }, 150,id, val
                                             ) 
