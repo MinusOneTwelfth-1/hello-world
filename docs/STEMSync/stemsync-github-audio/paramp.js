@@ -94,19 +94,20 @@ for (kk in Json){
 
      function sendInputValue(id,val){  sendInputValue.kvpair={};
                         sendInputValue.counter = (sendInputValue.counter || 0 ) +1;
+                        jsn={[id]: val }
+                        console.log(jsn)
                         if(sendInputValue.counter >= 10)
                                    {
                                      console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
                                      sendInputValue.counter = 0
-                                     jsn={[id]: val }
-                                     console.log(jsn)
+                                     
                                      try{  dataChannel.send(JSON.stringify( jsn  ))  } 
                                      catch{ console.log("dataChannel problem")}
                                      }
                         else {
                                  setTimeout(
-                                         (e,zq) => {console.log(e);
-                                         console.log(zq)}, 2000,"a",1.23
+                                         (idd, vall) => {console.log(`id= ${idd} , val= ${vall}`);
+                                                        }, 150,id, val
                                             ) 
                               }
                                      
