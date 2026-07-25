@@ -106,7 +106,7 @@ for (kk in Json){
         Object.values(inputs).forEach(input => input.addEventListener('input', 
                                               (e) =>
                                                       {// console.log(e.target)
-                                                              sendInputValue(input.id,input.value);
+                                                              sendInputValue(input.id, input.value);
                                                         updateParameters();
                                                       }
                                                                      )
