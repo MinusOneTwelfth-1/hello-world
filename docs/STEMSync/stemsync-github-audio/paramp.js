@@ -96,7 +96,10 @@ for (kk in Json){
                                      if(sendInputValue.counter >= 10){
                                      console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
                                      sendInputValue.counter = 0
-                                      dataChannel.send(JSON.stringify({[id]: val }))       
+                                    jsn={[id]: val }
+                                   console.log(jsn)
+                                    try{  dataChannel.send(JSON.stringify( jsn  ))  } 
+                                catch{ console.log("dataChannel problem")}
                                      }
                                      
                                     }
@@ -107,7 +110,7 @@ for (kk in Json){
                                               (e) =>
                                                       {// console.log(e.target)
                                                               sendInputValue(input.id, input.value);
-                                                        updateParameters();
+                                                                updateParameters();
                                                       }
                                                                      )
                                      )
