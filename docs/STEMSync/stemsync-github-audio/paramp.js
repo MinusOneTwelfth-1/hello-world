@@ -96,7 +96,7 @@ for (kk in Json){
                                      if(sendInputValue.counter >= 10){
                                      console.log(`counter: ${sendInputValue.counter} , id: ${id} , val: ${val}`);
                                      sendInputValue.counter = 0
-                                      dataChannel.sendmessage(JSON.stringify({id: val }))       
+                                      dataChannel.send(JSON.stringify({id: val }))       
                                      }
                                      
                                     }
