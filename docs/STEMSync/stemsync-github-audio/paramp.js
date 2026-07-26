@@ -94,7 +94,7 @@ for (kk in Json){
 
      function sendInputValue(id,val){  clearInterval(sendInputValue.timR)
                         sendInputValue.counter = (sendInputValue.counter || 0 ) +1;
-                        jsn={[id]: val }
+                        jsn={[id]: val, [x]: x, [v]: v, [t]: t  }
                        // console.log(jsn)
                         if(sendInputValue.counter >= 10)
                                    {
