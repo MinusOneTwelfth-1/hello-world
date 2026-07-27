@@ -66,7 +66,7 @@ for (kk in Json){
     if(Json.hasOwnProperty("v")){v=Json.v}
          if(Json.hasOwnProperty("t")){t=Json.t}
         if(Json.hasOwnProperty("pumpActive")){
-                      
+               pumpActive=Json.pumpActive       
                 let btn= sRoot.getElementById("btn-toggle-pump")
             btn.textContent = pumpActive ? "Turn Pump OFF" : "Turn Pump ON";
             btn.style.background = pumpActive ? "#0071e3" : "#34c759";
