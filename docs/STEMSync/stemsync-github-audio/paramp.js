@@ -53,7 +53,7 @@ const simCanvas = sRoot.getElementById('simCanvas');
 function resetAll(){ 
         let jsn = {"param-m": inputs.m.defaultValue,
                   "param-k": inputs.k.defaultValue,
-                   "param-dk": inputs.param-dk.defaultValue
+                   "param-dk": inputs.param-dk.defaultValue,
                   "param-b": inputs.b.defaultValue,
                    "param-fp-mult": inputs.fpMult.defaultValue,
                    "param-fext": inputs.fext.defaultValue,
