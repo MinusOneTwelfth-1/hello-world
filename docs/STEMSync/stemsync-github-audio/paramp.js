@@ -141,6 +141,8 @@ for (kk in Json){
 
 
         // Attach listeners
+        sRoot.getElementById('btn-reset').addEventListener('click',(e) => {resetAll()}
+        
         Object.values(inputs).forEach(input => input.addEventListener('input', 
                                               (e) =>
                                                       {// console.log(e.target)
