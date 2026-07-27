@@ -77,6 +77,8 @@ function resetAll(){
            let btn= sRoot.getElementById("btn-toggle-pump")
             btn.textContent ="Turn Pump ON";
             btn.style.background =  "#34c759";
+
+        sendInputValue("param-m", String(m))
         updateParameters()
          }
 
