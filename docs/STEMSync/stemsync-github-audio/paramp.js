@@ -59,9 +59,11 @@ function resetAll(){
                    "param-fext": inputs.fext.defaultValue,
                   "param-fs": inputs.fs.defaultValue,
                   "pumpActive": false,
-                  "v": "0", "x": "0", "t": "0"
+                  "v": "0.0", "x": "0.0", "t": "0.0"
                   }
-        dataChannel.send(JSON.stringify(jsn))
+        let jstr=JSON.stringify(jsn)
+        console.log(jstr)
+        dataChannel.send(jstr)
         pumpActive=false
         
      for( ee in inputs){
