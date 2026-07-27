@@ -11,7 +11,6 @@ const simCanvas = sRoot.getElementById('simCanvas');
         const ctxChart = chartCanvas.getContext('2d');
 
         // State variables
-     let initVals=
         let m = 2.0;
         let k0 = 20.0;
         let b = 0.27;
