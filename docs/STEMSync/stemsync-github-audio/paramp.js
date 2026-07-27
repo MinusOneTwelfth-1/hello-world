@@ -11,6 +11,7 @@ const simCanvas = sRoot.getElementById('simCanvas');
         const ctxChart = chartCanvas.getContext('2d');
 
         // State variables
+     let initVals=
         let m = 2.0;
         let k0 = 20.0;
         let b = 0.27;
@@ -51,14 +52,9 @@ const simCanvas = sRoot.getElementById('simCanvas');
             fi: sRoot.getElementById('stat-fi')
         };
 function resetAll(){ 
-        m = 2.0;
-         k0 = 20.0;
-         b = 0.27;
-         dk = 2.0;
-         fpMult = 2.0;
-         Fext0 = 1.5;
-         fs = 0.48;
-         pumpActive = false;
+     for( ee in inputs){
+     inputs[ee].value = inputs[ee].defaultValue        
+     }
 
          x = 0.0; // Displacement from equilibrium
          v = 0.0; // Velocity
