@@ -12,10 +12,12 @@
     <div class="container">
         <!-- Controls Panel -->
         <div class="panel">
-            <h3>System Controls</h3>
-            
+           <div>
+               <h3>System Controls</h3>
+               <button class='btn'>Reset</button>
+          </div>
             <div class="control-group">
-              <button class='btn'>Reset</button>
+              
                 <label>Mass (m)</label>
                 <div class="slider-container">
                     <input type="range" id="param-m" min="0.5" max="5.0" step="0.1" value="2.0">
