@@ -65,7 +65,7 @@ for (kk in Json){
    if(Json.hasOwnProperty("x")){x=Json.x}
     if(Json.hasOwnProperty("v")){v=Json.v}
          if(Json.hasOwnProperty("t")){t=Json.t}
-        if(Json.hasOwnProperty("pumpActive"){
+        if(Json.hasOwnProperty("pumpActive"))
                       pumpActive= !(Json.pumpActive)
                       sRoot.getElementById('btn-toggle-pump').click()
                    }
