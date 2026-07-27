@@ -61,13 +61,16 @@ for (kk in Json){
         inp.value=Json[kk]; // console.log(Json[kk]+' --> '+inp.value)
                     }
                 }
-     updateParameters()
+    
    if(Json.hasOwnProperty("x")){x=Json.x}
     if(Json.hasOwnProperty("v")){v=Json.v}
          if(Json.hasOwnProperty("t")){t=Json.t}
         if(Json.hasOwnProperty("pumpActive")){
-                      pumpActive= !(Json.pumpActive)
-                      sRoot.getElementById('btn-toggle-pump').click()
+                      
+                let btn=document.getElementById("btn-toggle-pump")
+            btn.textContent = pumpActive ? "Turn Pump OFF" : "Turn Pump ON";
+            btn.style.background = pumpActive ? "#0071e3" : "#34c759";
+         updateParameters();
                                              }
 }
 
@@ -141,7 +144,7 @@ for (kk in Json){
             e.target.style.background = pumpActive ? "#0071e3" : "#34c759";
             sendInputValue("param-m", String(m))
             updateParameters();
-        });
+              });
 
         sRoot.getElementById('btn-clear').addEventListener('click', () => {
             history = [];
