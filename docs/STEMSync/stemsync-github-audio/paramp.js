@@ -58,8 +58,7 @@ function resetAll(){
                    "param-fp-mult": inputs.fpMult.defaultValue,
                    "param-fext": inputs.fext.defaultValue,
                   "param-fs": inputs.fs.defaultValue, 
-                  "pumpActive": false,
-                  "v": "0.0", "x": "0.0", "t": "0.0"
+                  "pumpActive": false
                   }
         let jstr=JSON.stringify(jsn)
         console.log(jstr)
