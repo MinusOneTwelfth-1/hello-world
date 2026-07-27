@@ -97,7 +97,7 @@ for (kk in Json){
 
      function sendInputValue(id,val){  clearInterval(sendInputValue.timR)
                         sendInputValue.counter = (sendInputValue.counter || 0 ) +1;
-                        jsn={[id]: val, "x": x, "v": v, "t": t  }
+                        jsn={[id]: val, "x": x, "v": v, "t": t, "pumpActive": pumpActive  }
                        // console.log(jsn)
                         if(sendInputValue.counter >= 10)
                                    {
@@ -135,6 +135,7 @@ for (kk in Json){
             pumpActive = !pumpActive;
             e.target.textContent = pumpActive ? "Turn Pump OFF" : "Turn Pump ON";
             e.target.style.background = pumpActive ? "#0071e3" : "#34c759";
+            sendInputValue("param-m", String(m))
             updateParameters();
         });
 
