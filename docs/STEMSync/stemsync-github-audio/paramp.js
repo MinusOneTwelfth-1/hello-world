@@ -51,14 +51,19 @@ const simCanvas = sRoot.getElementById('simCanvas');
             fi: sRoot.getElementById('stat-fi')
         };
 function resetAll(){ 
+        pumpActive=false
+        
      for( ee in inputs){
      inputs[ee].value = inputs[ee].defaultValue        
      }
-
+     sendInputValue("param-m", inputs.m.defaultValue) 
          x = 0.0; // Displacement from equilibrium
          v = 0.0; // Velocity
          t = 0.0;
         pumpActive = false
+           let btn= sRoot.getElementById("btn-toggle-pump")
+            btn.textContent = pumpActive ? "Turn Pump OFF" : "Turn Pump ON";
+            btn.style.background = pumpActive ? "#0071e3" : "#34c759";
         updateParameters()
          }
 
