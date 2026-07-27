@@ -13,8 +13,8 @@
         <!-- Controls Panel -->
         <div class="panel">
            <div>
-               <h3>System Controls</h3>
-               <button class='btn'>Reset</button>
+               <h3>System Controls &nbsp;<button class='btn'>Reset</button></h3>
+         
           </div>
             <div class="control-group">
               
