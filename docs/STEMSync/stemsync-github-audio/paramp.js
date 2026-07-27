@@ -50,6 +50,22 @@ const simCanvas = sRoot.getElementById('simCanvas');
             fp: sRoot.getElementById('stat-fp'),
             fi: sRoot.getElementById('stat-fi')
         };
+function resetAll(){ 
+        m = 2.0;
+         k0 = 20.0;
+         b = 0.27;
+         dk = 2.0;
+         fpMult = 2.0;
+         Fext0 = 1.5;
+         fs = 0.48;
+         pumpActive = false;
+
+         x = 0.0; // Displacement from equilibrium
+         v = 0.0; // Velocity
+         t = 0.0;
+        pumpActive = false
+        updateParameters()
+         }
 
 function setFromJSON(Json){
 //const json=JSON.parse(Json);        
