@@ -60,6 +60,7 @@ function resetAll(){
                   pumpActive: false,
                   v=0, x=0, t=0
                   }
+        
         pumpActive=false
         
      for( ee in inputs){
@@ -96,8 +97,9 @@ for (kk in Json){
                 let btn= sRoot.getElementById("btn-toggle-pump")
             btn.textContent = pumpActive ? "Turn Pump OFF" : "Turn Pump ON";
             btn.style.background = pumpActive ? "#0071e3" : "#34c759";
-         updateParameters();
+        
                                              }
+         updateParameters();
 }
 
         function updateParameters() {
