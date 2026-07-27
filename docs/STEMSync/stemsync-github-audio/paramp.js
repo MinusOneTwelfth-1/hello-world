@@ -56,7 +56,7 @@ function resetAll(){
                    "param-dk": inputs.dk.defaultValue,
                   "param-b": inputs.b.defaultValue,
                    "param-fp-mult": inputs.fpMult.defaultValue,
-                   "param-fext": inputs.fext.defaultValue,
+                   "param-fext": inputs.fext.defaultValue, 
                   "param-fs": inputs.fs.defaultValue, 
                   "pumpActive": false
                   }
