@@ -51,16 +51,16 @@ const simCanvas = sRoot.getElementById('simCanvas');
             fi: sRoot.getElementById('stat-fi')
         };
 function resetAll(){ 
-        let jsn = {param-m: inputs.m.defaultValue,
-                  param-k: inputs.k.defaultValue,
-                  param-b: inputs.b.defaultValue,
-                   param-fp-mult: inputs.fpMult.defaultValue,
-                   param-fext: inputs.fext.defaultValue,
-                  param-fs: inputs.fs.defaultValue,
-                  pumpActive: false,
-                  v=0, x=0, t=0
+        let jsn = {"param-m": inputs.m.defaultValue,
+                  "param-k": inputs.k.defaultValue,
+                  "param-b": inputs.b.defaultValue,
+                   "param-fp-mult": inputs.fpMult.defaultValue,
+                   "param-fext": inputs.fext.defaultValue,
+                  "param-fs": inputs.fs.defaultValue,
+                  "pumpActive": false,
+                  "v": "0", "x": "0", "t": "0"
                   }
-        
+        dataChannel.send(JSON.stringify(jsn))
         pumpActive=false
         
      for( ee in inputs){
