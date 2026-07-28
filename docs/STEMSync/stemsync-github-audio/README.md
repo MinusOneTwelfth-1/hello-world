@@ -1,7 +1,10 @@
 hosting stemsync on github (mostly). Except maybe lab html. Added audio to webrtc bundle. 
 
 
-fnSigma[x_] := 1/(1 + Exp[-k x]) fnForce[x_, a_] := (1 - fnSigma[x])*x + a fnSigma[x]xx k = 3; a = 0.75 Plot[fnForce[x, a], {x, -5, 5}]
+fnSigma[x_] := 1/(1 + Exp[-k x])
+fnForce[x_, a_] := (1 - fnSigma[x])*x + a fnSigma[x] x x
+k = 3; a = 0.75
+Plot[fnForce[x, a], {x, -5, 5}]
 
 plot
 
