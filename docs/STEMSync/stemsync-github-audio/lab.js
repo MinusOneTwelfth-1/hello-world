@@ -249,7 +249,9 @@ console.log('lab.js')
     function sigma(x,k,xt){ let zx=-k* (x - xt);    return 1/(1 + Math.exp(zx))}
     function nonlinForce(x, a, k, xt) { return (1 - sigma(x, k, xt) ) * x / 2 +   a * sigma(x, k, xt)*x*x }
     let nl_a = 1.75; let nl_k = 3; let nl_xt = 1;
-    // Physics Engine Loop
+   
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Physics Engine Loop @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     function simLoop(time) {
         if (!isRunning) return;
 
