@@ -263,12 +263,12 @@ console.log('lab.js')
         const currentLengthMeters = (y - anchorY) / pixelsPerMeter;
         const restLengthMeters = restLength / pixelsPerMeter;
         const displacement = currentLengthMeters - restLengthMeters;
-
+        let springForce;
         // F = -k*(x-100) + m*g * 0.00  (linear) === no gravity in new version ===
         if (! nonlinchk.checked){ 
-        const springForce = -k * displacement;
+        springForce = -k * displacement;
         }
-         else{ const springForce= nonlinForce(displacement,2,1.5,1)
+         else{ springForce= nonlinForce(displacement,2,1.5,1)
          }
         const gravityForce = mass * g * 0;
         const totalForce = springForce + gravityForce;
