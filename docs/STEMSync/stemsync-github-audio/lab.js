@@ -22,6 +22,7 @@ console.log('lab.js')
 
     let mass = parseFloat(massSlider.value);
     let k = parseFloat(stiffnessSlider.value);
+     let damping = 1.5;
     let isRunning = false;
 
     // Physics State
@@ -285,7 +286,7 @@ console.log('lab.js')
          else{ springForce= k* nonlinForce(-y_mtr, nl_a, nl_k, nl_xt)
          }
 
-         
+         dampingForce = 
          
          
         /* =====================  OLD (NON-VERLET) commented out =========
