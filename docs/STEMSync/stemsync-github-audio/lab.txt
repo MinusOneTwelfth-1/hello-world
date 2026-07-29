@@ -72,9 +72,9 @@ canvas {border: solid lightgrey 8px;
     <div class="controls">
         <div class="control-group">
             <div class="inputs">
-                <input type="checkbox" id="chk-nonlinear" >
+                <input type="checkbox" id="chk-nonlinear" >   <label for="nonlinear">Nonlinear</label>
             </div>
-            <label for="nonlinear">Nonlinear</label>
+         
         </div>
      
         <div class="control-group">
