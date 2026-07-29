@@ -70,7 +70,12 @@ canvas {border: solid lightgrey 8px;
 </ul>
 </div>
     <div class="controls">
-        <div class="control-group"><input type="checkbox" id="chk-nonlinear" >Nonlinear</div>
+        <div class="control-group">
+            <div class="inputs">
+                <input type="checkbox" id="chk-nonlinear" >
+            </div>
+            <label for="nonlinear">Mass (kg)</label>
+        </div>
         <div class="control-group">
             <label for="mass">Mass (kg)</label>
             <div class="inputs">
