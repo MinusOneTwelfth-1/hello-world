@@ -97,7 +97,8 @@ canvas {border: solid lightgrey 8px;
         <button id="startStopBtn">Start</button>
     </div>
     <div class="canvas-container">
-    <canvas id="simCanvas" width="500" height="500"></canvas>
+    <canvas id="simCanvas" width="250" height="500"></canvas>
+    <canvas id="plotCanvas" width="250" height="500"></canvas>
     </div>
    
     <textarea id='msgbox'></textarea>
