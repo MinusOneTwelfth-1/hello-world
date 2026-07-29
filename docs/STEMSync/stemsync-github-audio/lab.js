@@ -109,7 +109,7 @@ console.log('lab.js')
             startStopBtn.classList.remove('stop');
         }
 
-         if (!boinkCtx) { boinkCtx = new (window.AudioContext || window.webkitAudioContext)();}
+         if (!boinkCtx) { console.log("new boink"); boinkCtx = new (window.AudioContext || window.webkitAudioContext)();}
     });
 
     // Mouse/Touch Dragging Mechanics
