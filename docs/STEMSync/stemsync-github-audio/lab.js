@@ -262,7 +262,7 @@ console.log('lab.js')
         if (!isRunning) return;
 
         const dt = (time - lastTime) / 1000; // convert to seconds
-        lastTime = time;
+        lastTime = time; document.title=time
 
         // Cap dt to prevent instability if the tab loses focus
         const clampedDt = Math.min(dt, 0.1);
