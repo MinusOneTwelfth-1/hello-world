@@ -101,7 +101,7 @@ canvas {
     <canvas id="simCanvas" width="190" height="500"></canvas>
     <canvas id="plotCanvas" width="275" height="500"></canvas>
     </div>
-   <audio src="boink.mp3" controls>
+   <audio src="boink.mp3" id="boink" controls>
   Your browser does not support the audio element.
 </audio>
     <textarea id='msgbox'></textarea>
