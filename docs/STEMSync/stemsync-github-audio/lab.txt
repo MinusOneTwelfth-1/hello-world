@@ -74,8 +74,9 @@ canvas {border: solid lightgrey 8px;
             <div class="inputs">
                 <input type="checkbox" id="chk-nonlinear" >
             </div>
-            <label for="nonlinear">Mass (kg)</label>
+            <label for="nonlinear">Nonlinear</label>
         </div>
+     
         <div class="control-group">
             <label for="mass">Mass (kg)</label>
             <div class="inputs">
