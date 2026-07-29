@@ -245,6 +245,9 @@ console.log('lab.js')
         ctx.lineTo(anchorX,equiY)
         ctx.stroke()
 
+    function sigma(x,k,xt){ let zx=-k* (x - xt);    return 1/(1 + Math.exp(zx))}
+    function nonlinForce(x, a, k, xt) { return (1 - sigma(x, k, xt) ) * x / 2 +   a * sigma(x, k, xt)*x*x }
+
     // Physics Engine Loop
     function simLoop(time) {
         if (!isRunning) return;
@@ -260,9 +263,9 @@ console.log('lab.js')
         const restLengthMeters = restLength / pixelsPerMeter;
         const displacement = currentLengthMeters - restLengthMeters;
 
-        // F = -k*x + m*g
+        // F = -k*(x-100) + m*g * 0.00  (linear) === no gravity in new version ===
         const springForce = -k * displacement;
-        const gravityForce = mass * g;
+        const gravityForce = mass * g * 0;
         const totalForce = springForce + gravityForce;
 
         // Acceleration
