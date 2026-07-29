@@ -109,7 +109,9 @@ console.log('lab.js')
             startStopBtn.classList.remove('stop');
         }
 
-         if (!boinkCtx) { console.log("new boink"); boinkCtx = new (window.AudioContext || window.webkitAudioContext)();}
+         if (!boinkCtx) { console.log("new boink"); boinkCtx = new (window.AudioContext || window.webkitAudioContext)();
+                           loadBoingSound("boink.mp3")
+                        }
     });
 
     // Mouse/Touch Dragging Mechanics
@@ -273,7 +275,7 @@ async function loadBoingSound(url) {
   }
 }
 
-loadBoingSound("boink.mp3")
+
 
 function playBoing(ofst=0.2) {   //  ====== AUDIO "BOING" 
   if (!boingBuffer || boinkCtx.state === 'suspended') return;
