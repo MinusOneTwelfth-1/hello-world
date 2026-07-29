@@ -267,11 +267,7 @@ console.log('lab.js')
         // Cap dt to prevent instability if the tab loses focus
         const clampedDt = Math.min(dt, 0.1);
 
-        // Convert current displacement from pixels back to meters for calculation
-        const currentLengthMeters = (y - anchorY) / pixelsPerMeter;
-        const restLengthMeters = restLength / pixelsPerMeter;
-        const displacement = currentLengthMeters - restLengthMeters;
-
+        
         // ============= VELOCITY VERLET ===============
          // FIRST UPDATE POSITION
         y_mtr = y_mtr + v * clampedDt + 0.5 * acceleration * clampedDt*clampedDt;
@@ -279,15 +275,30 @@ console.log('lab.js')
         // Estimate half-step velocity for use in damping force calc
         v_mid = v + 0.5 * acceleration * clampedDt
 
-         // calculate total force
-         if (! nonlinchk.checked){ 
+         // FIND TOTAL FORCE
+         if (! nonlinchk.checked){     // linear or nonlinear spring force 
         springForce = -k * y_mtr ;
         }
          else{ springForce= k* nonlinForce(-y_mtr, nl_a, nl_k, nl_xt)
          }
 
-         dampingForce = 
+         dampingForce = - damping * v_mid;  // damping force
+         const totalForce = springForce + dampingForce
          
+         // ACCELERATION
+         acceleration = totalForce / mass
+
+         // FINAL VELO AT END OF STEP
+         v = v_mid + 0.5 * acceleration * clampedDt
+         
+
+        // canvas Y position
+         y = y_mtr * pixelsPerMeter + restLength + anchorY;
+
+         // Convert current displacement from pixels back to meters for calculation
+        const currentLengthMeters = (y - anchorY) / pixelsPerMeter;
+        const restLengthMeters = restLength / pixelsPerMeter;
+        const displacement = currentLengthMeters - restLengthMeters;
          
         /* =====================  OLD (NON-VERLET) commented out =========
         let springForce;
