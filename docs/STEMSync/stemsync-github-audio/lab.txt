@@ -1,8 +1,9 @@
 <!-- lab.html -->
 <style>
 
-canvas {border: solid lightgrey 3px;
-    
+canvas {
+    border: solid lightgrey 3px;
+    border-radius: 0.8rem;
 }
 .canvas-container {text-align: center;}
  
