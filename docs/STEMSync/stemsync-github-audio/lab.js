@@ -260,7 +260,34 @@ console.log('lab.js')
     function sigma(x,k,xt){ let zx=-k* (x - xt);    return 1/(1 + Math.exp(zx))}
     function nonlinForce(x, a, k, xt) { return (1 - sigma(x, k, xt) ) * x / 2 +   a * sigma(x, k, xt)*x*x }
     let nl_a = 1.75; let nl_k = 3; let nl_xt = 1;
-   
+
+async function loadBoingSound(url) {
+     console.log("trying to load " + url )
+  try {
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+    // Decode the raw audio data into an optimized buffer
+    boingBuffer = await boinkCtx.decodeAudioData(arrayBuffer);
+  } catch (error) {
+    console.error("Failed to load audio:", error);
+  }
+}
+
+loadBoingSound("boink.mp3")
+
+function playBoing(ofst=0.2) {   //  ====== AUDIO "BOING" 
+  if (!boingBuffer || boinkCtx.state === 'suspended') return;
+
+  // AudioBufferSourceNodes are single-use disposable objects
+  const source = boinkCtx.createBufferSource();
+  source.buffer = boingBuffer;
+  
+  // Route to the speakers
+  source.connect(boinkCtx.destination);
+  
+  // Play immediately with zero latency using the precise AudioContext timeline
+  source.start(boinkCtx.currentTime,ofst);
+}
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Physics Engine Loop @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     function simLoop(time) {
