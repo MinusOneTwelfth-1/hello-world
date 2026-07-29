@@ -1,7 +1,7 @@
 <!-- lab.html -->
 <style>
 
-canvas {border: solid lightgrey 8px;
+canvas {border: solid lightgrey 3px;
     
 }
 .canvas-container {text-align: center;}
