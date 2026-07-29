@@ -26,9 +26,14 @@ console.log('lab.js')
 
     // Physics State
     let y = anchorY + restLength + (mass * g * pixelsPerMeter) / k; // Current mass Y position
-    let v = 0;                                                      // Velocity
+    let y_mtr = 0; // y in meters
+    let v = 0;       // Velocity
+    let v_mid=0;  // half-step velocity
+    let acceleration=0;         // acceleration
     let lastTime = 0;
     let equiY=y
+    let springForce;
+    let dampingForce;
 
     // Interaction State
     let isDragging = false;
@@ -265,6 +270,25 @@ console.log('lab.js')
         const currentLengthMeters = (y - anchorY) / pixelsPerMeter;
         const restLengthMeters = restLength / pixelsPerMeter;
         const displacement = currentLengthMeters - restLengthMeters;
+
+        // ============= VELOCITY VERLET ===============
+         // FIRST UPDATE POSITION
+        y_mtr = y_mtr + v * clampedDt + 0.5 * acceleration * clampedDt*clampedDt;
+
+        // Estimate half-step velocity for use in damping force calc
+        v_mid = v + 0.5 * acceleration * clampedDt
+
+         // calculate total force
+         if (! nonlinchk.checked){ 
+        springForce = -k * y_mtr ;
+        }
+         else{ springForce= k* nonlinForce(-y_mtr, nl_a, nl_k, nl_xt)
+         }
+
+         
+         
+         
+        /* =====================  OLD (NON-VERLET) commented out =========
         let springForce;
         // F = -k*(x-100) + m*g * 0.00  (linear) === no gravity in new version ===
         if (! nonlinchk.checked){ 
@@ -281,8 +305,10 @@ console.log('lab.js')
         // Update velocity and position
         v += a * clampedDt;
         const dyMeters = v * clampedDt;
+        y_mtr += dyMeters
         y += dyMeters * pixelsPerMeter;
-
+   */
+             
         draw();
         requestAnimationFrame(simLoop);
     }
