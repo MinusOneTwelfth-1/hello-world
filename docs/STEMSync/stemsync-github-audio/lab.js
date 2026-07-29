@@ -24,7 +24,7 @@ console.log('lab.js')
 
     let mass = parseFloat(massSlider.value);
     let k = parseFloat(stiffnessSlider.value);
-     let damping = 1.5;
+     let damping = 0.25;
     let isRunning = false;
 
     // Physics State
