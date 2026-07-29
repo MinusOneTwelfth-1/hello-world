@@ -11,6 +11,7 @@ console.log('lab.js')
     const startStopBtn = shadowDiv.shadowRoot.getElementById('startStopBtn');
     const msgbox = shadowDiv.shadowRoot.getElementById('msgbox')
     const nonlinchk = shadowDiv.shadowRoot.getElementById('chk-nonlinear')
+    const boink = shadowDiv.shadowRoot.getElementById('boink')
 
     // Simulation Constants & Variables
     const g = 9.81;            // Gravity
