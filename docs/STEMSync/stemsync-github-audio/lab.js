@@ -248,7 +248,7 @@ console.log('lab.js')
 
     function sigma(x,k,xt){ let zx=-k* (x - xt);    return 1/(1 + Math.exp(zx))}
     function nonlinForce(x, a, k, xt) { return (1 - sigma(x, k, xt) ) * x / 2 +   a * sigma(x, k, xt)*x*x }
-
+    const nl-a = 1.75; const nl-k = 3; const nl-xt = 1;
     // Physics Engine Loop
     function simLoop(time) {
         if (!isRunning) return;
@@ -268,7 +268,7 @@ console.log('lab.js')
         if (! nonlinchk.checked){ 
         springForce = -k * displacement;
         }
-         else{ springForce= k* nonlinForce(-displacement,2,1.5,1)
+         else{ springForce= k* nonlinForce(-displacement, nl-a, nl-k, nl-xt)
          }
         const gravityForce = mass * g * 0;
         const totalForce = springForce + gravityForce;
