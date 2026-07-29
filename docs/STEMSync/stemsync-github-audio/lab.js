@@ -12,6 +12,7 @@ console.log('lab.js')
     const msgbox = shadowDiv.shadowRoot.getElementById('msgbox')
     const nonlinchk = shadowDiv.shadowRoot.getElementById('chk-nonlinear')
     const boink = shadowDiv.shadowRoot.getElementById('boink')
+    let boinkCtx;
 
     // Simulation Constants & Variables
     const g = 9.81;            // Gravity
@@ -107,6 +108,8 @@ console.log('lab.js')
 
             startStopBtn.classList.remove('stop');
         }
+
+         if (!boinkCtx) { boinkCtx = new (window.AudioContext || window.webkitAudioContext)();}
     });
 
     // Mouse/Touch Dragging Mechanics
