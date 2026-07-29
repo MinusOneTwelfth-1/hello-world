@@ -76,6 +76,7 @@ console.log('lab.js')
     function resetToEquilibrium() {
         const equilibriumOffset = (mass * g * pixelsPerMeter * 0) / k;    // ======= no gravity in new version ======
         y = anchorY + restLength + equilibriumOffset;
+         y_mtr = (y - anchorY - restLength)/pixelsPerMeter
         equiY=y
         v = 0;
        draw();
@@ -172,7 +173,7 @@ console.log('lab.js')
         const my = getMouseY(e);
         // Constrain movement within reasonable canvas boundaries
         y = Math.max(anchorY + 20, Math.min(canvas.height - 50, my));
-        
+        y_mtr = (y - anchorY - restLength)/pixelsPerMeter
         msgInput.value=JSON.stringify({"y":y,"timestamp": Date.now()})
         sendBtn.click()
 
