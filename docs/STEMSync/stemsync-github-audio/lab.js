@@ -67,7 +67,7 @@ console.log('lab.js')
     }
 
     function resetToEquilibrium() {
-        const equilibriumOffset = (mass * g * pixelsPerMeter) / k;
+        const equilibriumOffset = (mass * g * pixelsPerMeter * 0) / k;    // ======= no gravity in new version ======
         y = anchorY + restLength + equilibriumOffset;
         equiY=y
         v = 0;
