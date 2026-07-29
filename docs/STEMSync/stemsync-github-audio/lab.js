@@ -268,7 +268,7 @@ console.log('lab.js')
         if (! nonlinchk.checked){ 
         springForce = -k * displacement;
         }
-         else{ springForce= nonlinForce(displacement,2,1.5,1)
+         else{ springForce= - nonlinForce(-displacement,2,1.5,1)
          }
         const gravityForce = mass * g * 0;
         const totalForce = springForce + gravityForce;
