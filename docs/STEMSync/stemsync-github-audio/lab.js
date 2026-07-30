@@ -22,7 +22,8 @@ console.log('lab.js')
     const anchorX = canvas.width / 2;
     const anchorY = 50;        // Ceiling height
     const restLength = 150;    // Unstretched spring length in pixels
-    
+
+    let plotCounter=0 // counts how many points have been plotted since retrace
 
     let mass = parseFloat(massSlider.value);
     let k = parseFloat(stiffnessSlider.value);
@@ -252,6 +253,14 @@ console.log('lab.js')
         ctx.arc(anchorX, y, radius, 0, Math.PI * 2);
         ctx.fill();
         ctx.stroke();
+
+         // plot
+         plotCtx.lineWidth=3;
+         plotCounter = plotCounter+1
+         if (plotCounter>=110){plotCounter=0; } 
+          plotPump[plotCounter]= Math.sin(plotCounter/25 * 2 * Math.PI)
+           plotCtx.lineTo(plotCounter, plotPump[plotCounter]
+          plotCtx.stroke()
     }
 
        // Draw equiY line
