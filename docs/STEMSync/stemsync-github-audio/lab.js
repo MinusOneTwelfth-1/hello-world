@@ -312,7 +312,7 @@ function playBoing(ofst=0.2) {   //  ====== AUDIO "BOING"
 
         // ========== update plot array for plotPump
          nTime= trunc(110* (time % 3 )/3)
-        plotPump[nTime]= 100 + 25 * Math.sin(time/2 * 25 * Math.PI)
+        plotPump[nTime]= 100 + 25 * Math.random()
          
         if (!isRunning) return;
 
