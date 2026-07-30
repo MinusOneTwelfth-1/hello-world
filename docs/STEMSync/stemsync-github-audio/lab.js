@@ -205,8 +205,11 @@ console.log('lab.js')
          {for( i=0; i<110; i++){plotPump.push(100 + 25 * Math.sin(i/25 * 2 * Math.PI))
                                }
          }
+    uparro=new Image()
+    uparro.src="up-arrow.png"
+
     function draw() {
-         
+         if(upBoing){plotCtx.drawImage(uparro)
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Draw Ceiling
