@@ -207,6 +207,7 @@ console.log('lab.js')
          }
     uparro=new Image()
     uparro.src="up-arrow.png"
+     upBoing = false // flag to show up arrow during pump "boing"
 
     function draw() {
          if(upBoing){ctx.drawImage(uparro,50,80)}
