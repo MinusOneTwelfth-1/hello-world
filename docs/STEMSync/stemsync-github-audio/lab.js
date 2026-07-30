@@ -3,6 +3,8 @@ console.log('lab.js')
 
      const canvas = shadowDiv.shadowRoot.querySelector("#simCanvas")
     const ctx = canvas.getContext('2d');
+   const plotCanvas=shadowDiv.shadowRoot.querySelector("#plotCanvas")
+    const plotctx=plotCanvas.getContext('2d');
         // Control Elements
     const massSlider = shadowDiv.shadowRoot.getElementById('massSlider');
     const massText = shadowDiv.shadowRoot.getElementById('massText');
