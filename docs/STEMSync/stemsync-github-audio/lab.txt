@@ -63,7 +63,7 @@ canvas {
  
 
 <div class="container">
-  <div><img src="up-arrow.jpg"/>
+  <div><img src="up-arrow.png"/>
 <ul>
 <li>Use either the sliders or type directly into the text boxes to alter the physics constants.</li>
 <li>Click and hold the blue mass circle with your mouse or finger to pull it to an initial height.
