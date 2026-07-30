@@ -213,7 +213,7 @@ console.log('lab.js')
   
         ctx.clearRect(0, 0, canvas.width, canvas.height);
          
-       if(upBoing){ctx.drawImage(uparro,50,80)} // flash the up arrow during pump boing
+       if(upBoing){ctx.drawImage(uparro,30,80)} // flash the up arrow during pump boing
          
         // Draw Ceiling
         ctx.strokeStyle = '#333';
