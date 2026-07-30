@@ -59,6 +59,7 @@ canvas {
         }
 
     #msgbox {height: 5rem; width: 100%}
+    #plotCanvas {background: #f3f3f3;}
 </style>
  
 
