@@ -259,7 +259,7 @@ console.log('lab.js')
          plotCounter = plotCounter+1
          if (plotCounter>=110){plotCounter=0; } 
           plotPump[plotCounter]= Math.sin(plotCounter/25 * 2 * Math.PI)
-           plotCtx.lineTo(plotCounter, plotPump[plotCounter]
+           plotCtx.lineTo(plotCounter, plotPump[plotCounter])
           plotCtx.stroke()
     }
 
