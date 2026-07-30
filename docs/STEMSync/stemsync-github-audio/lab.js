@@ -309,6 +309,11 @@ function playBoing(ofst=0.2) {   //  ====== AUDIO "BOING"
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Physics Engine Loop @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     function simLoop(time) {
+
+        // ========== update plot array for plotPump
+         nTime= trunc(110* (time % 3 )/3)
+        plotPump[nTime]= 100 + 25 * Math.sin(time/2 * 25 * Math.PI)
+         
         if (!isRunning) return;
 
         const dt = (time - lastTime) / 1000; // convert to seconds
