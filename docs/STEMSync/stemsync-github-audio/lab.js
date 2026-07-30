@@ -201,7 +201,8 @@ console.log('lab.js')
 
     // Render Function
     let plotCounter=0 // counts how many points have been plotted since retrace
-        let plotPump=[];for(let i=0,i<110,i++){plotPump.push(100 + 25 * Math.sin(i/25 * 2 * Math.PI)))
+        let plotPump=[];
+         {for(let i=0,i<110,i++){plotPump.push(100 + 25 * Math.sin(i/25 * 2 * Math.PI)))}
     function draw() {
          
         ctx.clearRect(0, 0, canvas.width, canvas.height);
