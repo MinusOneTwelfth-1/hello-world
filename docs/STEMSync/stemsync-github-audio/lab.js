@@ -262,7 +262,7 @@ console.log('lab.js')
          plotCtx.lineWidth=3;
          plotCtx.strokeStyle="#c82e2e"
   
-          ctx.moveTo(0,plotPump[0] )
+          plotCtx.moveTo(0,plotPump[0] )
                      {   for(let i=0;i<=110;i++){
            plotCtx.lineTo(i, 100 + 25 * plotPump[i])
           plotCtx.stroke()
