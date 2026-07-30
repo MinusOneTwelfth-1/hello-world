@@ -206,7 +206,7 @@ console.log('lab.js')
                                }
          }
     const uparro=new Image()
-    const uparro.src="up-arrow.png"
+     uparro.src="up-arrow.png"
     let upBoing = false // flag to show up arrow during pump "boing"
     let holdBoing= false // flag to keep showing arrow until end of pulse
     let boingCount=0
