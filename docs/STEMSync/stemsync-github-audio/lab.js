@@ -209,7 +209,7 @@ console.log('lab.js')
     uparro.src="up-arrow.png"
 
     function draw() {
-         if(upBoing){plotCtx.drawImage(uparro)
+         if(upBoing){ctx.drawImage(uparro,50,80)}
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Draw Ceiling
