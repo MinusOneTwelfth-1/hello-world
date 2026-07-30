@@ -325,6 +325,7 @@ function playBoing(ofst=0.2) {   //  ====== AUDIO "BOING"
 let pumpThreshold= 10.0
 let pumpLastTime = 0
 let pumpTimeSince=0
+let pumpAmplitude=20
 function simLoop(time) {
   
         if (!isRunning) return;
@@ -355,7 +356,7 @@ function simLoop(time) {
 
          dampingForce = - damping * v_mid;  // damping force
     let pumpForce = 0    
-     if (holdBoing) {pumpForce = -4 }
+     if (holdBoing) {pumpForce = -pumpAmplitude }
          const totalForce = springForce + dampingForce + pumpForce
          
          // ACCELERATION
