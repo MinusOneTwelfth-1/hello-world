@@ -322,8 +322,9 @@ function playBoing(ofst=0.2) {   //  ====== AUDIO "BOING"
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Physics Engine Loop @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-let pumpThreshold= 2
+let pumpThreshold= 10.0
 let pumpLastTime = 0
+let pumpTimeSince=0
 function simLoop(time) {
   
         if (!isRunning) return;
@@ -331,7 +332,8 @@ function simLoop(time) {
         const dt = (time - lastTime) / 1000; // convert to seconds
         lastTime = time; document.title=time
 
-        pumpLastTime=time/1000
+        pumpTimeSince=(time/1000-pumpLastTime)
+        if(pumpTimeSince > pumpThreshold){pumpLastTime=time/1000; upBoing=true}
          
         // Cap dt to prevent instability if the tab loses focus
         const clampedDt = Math.min(dt, 0.1);
