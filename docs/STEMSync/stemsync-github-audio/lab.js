@@ -261,10 +261,10 @@ console.log('lab.js')
          plotCtx.strokeStyle="#c82e2e"
   
           ctx.moveTo(0,plotPump[0]
-     for(let i=0;i<=110;i++){
+                     {   for(let i=0;i<=110;i++){
            plotCtx.lineTo(i, 100 + 25 * plotPump[i])
           plotCtx.stroke()
-    }
+    } }
 
        // Draw equiY line
         ctx.strokeStyle = '#555';
