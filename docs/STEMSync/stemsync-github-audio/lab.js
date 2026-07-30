@@ -23,9 +23,7 @@ console.log('lab.js')
     const anchorY = 50;        // Ceiling height
     const restLength = 150;    // Unstretched spring length in pixels
 
-    let plotCounter=0 // counts how many points have been plotted since retrace
-
-    let mass = parseFloat(massSlider.value);
+        let mass = parseFloat(massSlider.value);
     let k = parseFloat(stiffnessSlider.value);
      let damping = 0.25;
     let isRunning = false;
@@ -41,11 +39,7 @@ console.log('lab.js')
     let springForce;
     let dampingForce;
 
-    // PLOTTING DATA
-    let plotPump=[]
-
-
-    // Interaction State
+     // Interaction State
     let isDragging = false;
 
     // Sync input controls
@@ -206,7 +200,10 @@ console.log('lab.js')
     window.addEventListener('touchend', endDrag);
 
     // Render Function
+    let plotCounter=0 // counts how many points have been plotted since retrace
+        let plotPump=[];for(let i=0,i<110,i++){plotPump.push(0.0))
     function draw() {
+         
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // Draw Ceiling
@@ -260,10 +257,15 @@ console.log('lab.js')
 
          // plot
          plotCtx.lineWidth=3;
+         plotCtx.strokeStyle="#c82e2e"
          plotCounter = plotCounter+1
-         if (plotCounter>=110){plotCounter=0;  plotCtx.clearRect(0, 0, plotCanvas.width, plotCanvas.height);} 
-          plotPump[plotCounter]= Math.sin(plotCounter/25 * 2 * Math.PI)
-           plotCtx.lineTo(plotCounter, 100 + 25 * plotPump[plotCounter])
+         if (plotCounter>=110){
+              plotCounter=0; 
+             
+          plotPump[plotCounter]= 100 + 25 * Math.sin(plotCounter/25 * 2 * Math.PI)
+          ctx.moveTo(0,plotPump[0]
+     for(let i=0;i<=110;i++){
+           plotCtx.lineTo(i, 100 + 25 * plotPump[i])
           plotCtx.stroke()
     }
 
