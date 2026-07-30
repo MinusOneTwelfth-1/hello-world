@@ -205,16 +205,22 @@ console.log('lab.js')
          {for( i=0; i<110; i++){plotPump.push(100 + 25 * Math.sin(i/25 * 2 * Math.PI))
                                }
          }
-    uparro=new Image()
-    uparro.src="up-arrow.png"
-     upBoing = false // flag to show up arrow during pump "boing"
+    const uparro=new Image()
+    const uparro.src="up-arrow.png"
+    let upBoing = false // flag to show up arrow during pump "boing"
+    let holdBoing= false // flag to keep showing arrow until end of pulse
+    let boingCount=0
 
-    function draw() {
+    function draw() { // =============== draw the canvases ================
   
         ctx.clearRect(0, 0, canvas.width, canvas.height);
          
-       if(upBoing){ctx.drawImage(uparro,30,80)} // flash the up arrow during pump boing
-         
+       if(upBoing || holdBoing ){ctx.drawImage(uparro,10,y); upBoing=false; holdBoing=true; boingCount=500 } // flash the up arrow during pump boing
+       if(holdBoing){boingCount=boingCount-1;
+                      if (boingCount<=0 { upBoing=false; holdBoing=false;
+
+                                       }
+                    }
         // Draw Ceiling
         ctx.strokeStyle = '#333';
         ctx.lineWidth = 8;
