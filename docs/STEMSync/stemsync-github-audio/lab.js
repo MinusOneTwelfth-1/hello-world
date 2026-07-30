@@ -267,7 +267,7 @@ console.log('lab.js')
            plotCtx.lineTo(i, 100 + 25 * plotPump[i])
           plotCtx.stroke()
     } }
-
+    }
        // Draw equiY line
         ctx.strokeStyle = '#555';
         ctx.lineWidth = 2;
