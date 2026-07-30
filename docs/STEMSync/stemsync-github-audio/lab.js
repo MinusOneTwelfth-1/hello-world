@@ -216,7 +216,7 @@ console.log('lab.js')
         ctx.clearRect(0, 0, canvas.width, canvas.height);
          
        if(upBoing ){ctx.drawImage(uparro,10,y); upBoing=false; holdBoing=true; boingCount=500 } // flash the up arrow during pump boing
-       if(holdBoing){boingCount=boingCount-1;
+       if(holdBoing){boingCount=boingCount-1; ctx.drawImage(uparro,10,y); 
                       if (boingCount<=0) { upBoing=false; holdBoing=false;
 
                                        }
