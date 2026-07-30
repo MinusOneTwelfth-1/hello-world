@@ -261,9 +261,9 @@ console.log('lab.js')
          // plot
          plotCtx.lineWidth=3;
          plotCounter = plotCounter+1
-         if (plotCounter>=110){plotCounter=0; } 
+         if (plotCounter>=110){plotCounter=0;  plotCtx.clearRect(0, 0, plotCanvas.width, plotCanvas.height);} 
           plotPump[plotCounter]= Math.sin(plotCounter/25 * 2 * Math.PI)
-           plotCtx.lineTo(plotCounter, plotPump[plotCounter])
+           plotCtx.lineTo(plotCounter, 100 + 25 * plotPump[plotCounter])
           plotCtx.stroke()
     }
 
