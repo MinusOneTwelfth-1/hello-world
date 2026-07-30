@@ -261,10 +261,10 @@ console.log('lab.js')
          // plot
          plotCtx.lineWidth=3;
          plotCtx.strokeStyle="#c82e2e"
-  
+          plotCtx.beginPath()
           plotCtx.moveTo(0,plotPump[0] )
                      {   for(let i=0;i<=110;i++){
-           plotCtx.lineTo(i, 100 + 25 * plotPump[i])
+           plotCtx.lineTo(i, plotPump[i])
           plotCtx.stroke()
     } }
     }
