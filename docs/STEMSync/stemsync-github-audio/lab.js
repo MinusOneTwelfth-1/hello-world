@@ -41,6 +41,10 @@ console.log('lab.js')
     let springForce;
     let dampingForce;
 
+    // PLOTTING DATA
+    let plotPump=[]
+
+
     // Interaction State
     let isDragging = false;
 
