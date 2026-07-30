@@ -210,9 +210,11 @@ console.log('lab.js')
      upBoing = false // flag to show up arrow during pump "boing"
 
     function draw() {
-         if(upBoing){ctx.drawImage(uparro,50,80)}
+  
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+         
+       if(upBoing){ctx.drawImage(uparro,50,80)} // flash the up arrow during pump boing
+         
         // Draw Ceiling
         ctx.strokeStyle = '#333';
         ctx.lineWidth = 8;
