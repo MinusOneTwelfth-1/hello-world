@@ -490,6 +490,6 @@ window.addEventListener('message', (event) => {
   msgbox.value=msgbox.value+'\n......\n'+event.data
 });
 
-
+console.log("lab.js ====  2.2")
 
 //# sourceURL=praveen.com/lab.js
