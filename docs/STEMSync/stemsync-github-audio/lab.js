@@ -207,6 +207,9 @@ console.log('lab.js')
          }
     const uparro=new Image()
      uparro.src="up-arrow.png"
+    const downarro=new Image()
+    downarro.src="down-arrow.png"
+
     let upBoing = false // flag to show up arrow during pump "boing"
     let holdBoing= false // flag to keep showing arrow until end of pulse
     let boingCount=0
@@ -326,6 +329,7 @@ let pumpThreshold= 10.0
 let pumpLastTime = 0
 let pumpTimeSince=0
 let pumpAmplitude=20
+
 function simLoop(time) {
   
         if (!isRunning) return;
