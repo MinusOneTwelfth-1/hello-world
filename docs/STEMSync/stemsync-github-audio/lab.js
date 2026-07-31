@@ -217,8 +217,9 @@ console.log('lab.js')
     function draw() { // =============== draw the canvases ================
   
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-         
-       if(upBoing ){ctx.drawImage(uparro,anchorX-20,y+20); upBoing=false; holdBoing=true; boingCount=35 } // flash the up arrow during pump boing
+
+       let   arow=uparro; if(pulseAmplitude > 0 ){arow=downarro}
+       if(upBoing ){ctx.drawImage(arow,anchorX-20,y+20); upBoing=false; holdBoing=true; boingCount=35 } // flash the up arrow during pump boing
        if(holdBoing){boingCount=boingCount-1; ctx.drawImage(uparro,anchorX-20,y+25
                                                            ); 
                       if (boingCount<=0) { upBoing=false; holdBoing=false;
