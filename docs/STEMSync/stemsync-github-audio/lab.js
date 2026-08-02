@@ -390,7 +390,10 @@ function simLoop(time) {
          dampingForce = - damping * v_mid;  // damping force
     let pumpForce = 0    
      if (holdBoing) {pumpForce = -pumpAmplitude }
-         const totalForce = springForce + dampingForce + pumpForce
+
+     let sigForce=0
+      if(holdSigBoing){sigForce=-sigAmplitude}
+         const totalForce = springForce + dampingForce + pumpForce + sigForce
          
          // ACCELERATION
          acceleration = totalForce / mass
