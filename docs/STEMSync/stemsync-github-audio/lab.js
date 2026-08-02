@@ -355,6 +355,8 @@ let sigLastTime=0
 let sigTimeSince=0
 let sigAmplitude=5
 
+let lastZeroTime=0 // for zero crossing measurement
+let zeroCrossingPeriod=1
 
 function simLoop(time) {
   
@@ -378,9 +380,12 @@ function simLoop(time) {
         const y_mtr_change = v * clampedDt + 0.5 * acceleration * clampedDt*clampedDt;
         const y_mtr_old = y_mtr
         y_mtr = y_mtr + y_mtr_change;
-
+    
      // ==== zero crossing detector
-     if (y_mtr_old < 0  && y_mtr > 0 ) {console.log("zero zero zero")}
+     if (y_mtr_old < 0  && y_mtr > 0 ) {zeroCrossingPeriod=time-lastZeroTime; 
+                                        console.log("zero zero zero " + zeroCrossingPeriod)
+                                       lastZeroTime=time
+                                       }
      
         // Estimate half-step velocity for use in damping force calc
         v_mid = v + 0.5 * acceleration * clampedDt
@@ -529,6 +534,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  3.0")
+console.log("lab.js ====  3.1")
 
 //# sourceURL=praveen.com/lab.js
