@@ -524,6 +524,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  2.6")
+console.log("lab.js ====  2.7")
 
 //# sourceURL=praveen.com/lab.js
