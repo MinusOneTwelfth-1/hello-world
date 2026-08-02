@@ -355,7 +355,7 @@ let sigThreshold=10.0
 let sigLastTime=0
 let sigTimeSince=0
 let sigAmplitude=5
-let upSigBoing=false
+
 
 function simLoop(time) {
   
