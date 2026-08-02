@@ -368,7 +368,7 @@ function simLoop(time) {
         if(pumpTimeSince > pumpThreshold){pumpLastTime=time/1000; pumpAmplitude= -pumpAmplitude;upBoing=true}
          
      sigTimeSince=(time/1000-sigLastTime)
-     if(sigTimeSince > sigThreshold) {sigLastTime=time/1000; sigAmplitude=-sigAmplitude; upSig=true}
+     if(sigTimeSince > sigThreshold) {sigLastTime=time/1000; sigAmplitude=-sigAmplitude; upSigBoing=true}
      
      // Cap dt to prevent instability if the tab loses focus
         const clampedDt = Math.min(dt, 0.1);
