@@ -220,7 +220,7 @@ console.log('lab.js')
     let boingCount=0
 
     let upSigBoing=false
-    let sigHoldBoing=false
+    let holdSigBoing=false
     let sigBoingCount=0
      let arow // either uparro or downarro
 
