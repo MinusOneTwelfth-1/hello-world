@@ -379,7 +379,7 @@ function simLoop(time) {
         y_mtr = y_mtr + y_mtr_change;
 
      // ==== zero crossing detector
-     if (y_mtr_change >0 ) {console.log("zero zero zero"}
+     if (y_mtr_change > 0 ) {console.log("zero zero zero")}
      
         // Estimate half-step velocity for use in damping force calc
         v_mid = v + 0.5 * acceleration * clampedDt
@@ -528,6 +528,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  2.8")
+console.log("lab.js ====  2.9")
 
 //# sourceURL=praveen.com/lab.js
