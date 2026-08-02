@@ -210,6 +210,11 @@ console.log('lab.js')
     const downarro=new Image()
     downarro.src="down-arrow.png"
 
+   const upsigarro=new Image()
+    upsigarro.src="up-sig-arrow.png"
+   const downsigarro=new Image()
+   downsigarro.src="down-sig-arrow.png"
+
     let upBoing = false // flag to show up arrow during pump "boing"
     let holdBoing= false // flag to keep showing arrow until end of pulse
     let boingCount=0
