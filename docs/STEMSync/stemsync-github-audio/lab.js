@@ -238,9 +238,8 @@ console.log('lab.js')
                     }
 
               arow=downsigarro; if(sigAmplitude > 0 ){arow=upsigarro}
-       if(upSigBoing ){ctx.drawImage(arow,anchorX-50,y+20); upSigBoing=false; holdSigBoing=true; sigBoingCount=35 } // flash the up arrow during pump boing
-       if(holdSigBoing){sigBoingCount=sigBoingCount-1; ctx.drawImage(arow,anchorX-20,y+25
-                                                           ); 
+       if(upSigBoing ){ctx.drawImage(arow,anchorX-50,y+20,30,30); upSigBoing=false; holdSigBoing=true; sigBoingCount=35 } // flash the up arrow during pump boing
+       if(holdSigBoing){sigBoingCount=sigBoingCount-1; ctx.drawImage(arow,anchorX-50,y+20, 30,30   ); 
                       if (sigBoingCount<=0) { upSigBoing=false; holdSigBoing=false;
 
                                        }
@@ -522,6 +521,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  2.3")
+console.log("lab.js ====  2.6")
 
 //# sourceURL=praveen.com/lab.js
