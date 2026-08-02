@@ -383,7 +383,7 @@ function simLoop(time) {
     
      // ==== zero crossing detector
      if (y_mtr_old < 0  && y_mtr > 0 ) {zeroCrossingPeriod=time-lastZeroTime; 
-                                        console.log("zero zero zero " + zeroCrossingPeriod)
+                                        console.log("zero zero zero " + zeroCrossingPeriod + " " + 1/zeroCrossingPeriod)
                                        lastZeroTime=time
                                        }
      
@@ -534,6 +534,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05/2
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  3.2")
+console.log("lab.js ====  3.3")
 
 //# sourceURL=praveen.com/lab.js
