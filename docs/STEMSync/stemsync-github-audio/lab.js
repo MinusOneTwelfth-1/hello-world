@@ -531,9 +531,9 @@ window.addEventListener('message', (event) => {
 });
 
 freq=1/2/Math.PI*Math.sqrt(k/mass)
-pumpThreshold=1/freq/2*1.05
+pumpThreshold=1/freq/2*1.05/2
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  3.1")
+console.log("lab.js ====  3.2")
 
 //# sourceURL=praveen.com/lab.js
