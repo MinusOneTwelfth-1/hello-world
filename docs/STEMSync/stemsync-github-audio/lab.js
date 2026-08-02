@@ -218,6 +218,10 @@ console.log('lab.js')
     let upBoing = false // flag to show up arrow during pump "boing"
     let holdBoing= false // flag to keep showing arrow until end of pulse
     let boingCount=0
+
+    let upSigBoing=false
+    let sigHoldBoing=false
+    let sigBoingCount=0
      let arow // either uparro or downarro
 
     function draw() { // =============== draw the canvases ================
@@ -232,6 +236,16 @@ console.log('lab.js')
 
                                        }
                     }
+
+              arow=downsigarro; if(sigAmplitude > 0 ){arow=upsigarro}
+       if(upSigBoing ){ctx.drawImage(arow,anchorX-50,y+20); upSigBoing=false; holdSigBoing=true; sigboingCount=35 } // flash the up arrow during pump boing
+       if(holdSigBoing){sigBoingCount=sigBoingCount-1; ctx.drawImage(arow,anchorX-20,y+25
+                                                           ); 
+                      if (sigBoingCount<=0) { upSigBoing=false; holdSigBoing=false;
+
+                                       }
+                    } 
+         
         // Draw Ceiling
         ctx.strokeStyle = '#333';
         ctx.lineWidth = 8;
@@ -341,7 +355,7 @@ let sigThreshold=10.0
 let sigLastTime=0
 let sigTimeSince=0
 let sigAmplitude=5
-let upSig=false
+let upSigBoing=false
 
 function simLoop(time) {
   
