@@ -238,7 +238,7 @@ console.log('lab.js')
                     }
 
               arow=downsigarro; if(sigAmplitude > 0 ){arow=upsigarro}
-       if(upSigBoing ){ctx.drawImage(arow,anchorX-50,y+20); upSigBoing=false; holdSigBoing=true; sigboingCount=35 } // flash the up arrow during pump boing
+       if(upSigBoing ){ctx.drawImage(arow,anchorX-50,y+20); upSigBoing=false; holdSigBoing=true; sigBoingCount=35 } // flash the up arrow during pump boing
        if(holdSigBoing){sigBoingCount=sigBoingCount-1; ctx.drawImage(arow,anchorX-20,y+25
                                                            ); 
                       if (sigBoingCount<=0) { upSigBoing=false; holdSigBoing=false;
