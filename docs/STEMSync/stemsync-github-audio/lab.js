@@ -359,12 +359,8 @@ function simLoop(time) {
         if (!isRunning) return;
 
         const dt = (time - lastTime) / 1000; // convert to seconds
-        lastTime = time; document.title=time
-
+        lastTime = time; // document.title=time
     
-         
- 
-     
      // Cap dt to prevent instability if the tab loses focus
         const clampedDt = Math.min(dt, 0.1);
 
@@ -396,7 +392,7 @@ function simLoop(time) {
   const pumpForce = pumpAmplitude * Math.sin ( 2 * Math.PI * pumpFrequency * time/1000)
    const sigForce = sigAmplitude * Math.sin ( 2 * Math.PI * sigFrequency * time/1000)
 
-    
+document.title = pumpForce.toFIxed(3) + "  " + sigForce.toFixed(3)   
      const totalForce = springForce + dampingForce + pumpForce + sigForce
          
          // ACCELERATION
@@ -528,6 +524,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05/2
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  3.5")
+console.log("lab.js ====  3.6")
 
 //# sourceURL=praveen.com/lab.js
