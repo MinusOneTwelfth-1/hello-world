@@ -353,9 +353,9 @@ ctx.lineWidth=3
 ctx.beginPath()
 ctx.moveTo(x0,y0)
 ctx.lineTo(x1,y1)
-ctx.lineTo(x1-10,y1-10)
+ctx.lineTo(x1-10,y1-10*Math.sign(y1-y0))
 ctx.moveTo(x1,y1)
-ctx.lineTo(x1+10,y1-10)
+ctx.lineTo(x1+10,y1-10*Math.sign(y1-y0))
 ctx.stroke()}
 
 
@@ -545,6 +545,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05/2
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  4.0")
+console.log("lab.js ====  4.1")
 
 //# sourceURL=praveen.com/lab.js
