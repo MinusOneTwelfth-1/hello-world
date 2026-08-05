@@ -361,11 +361,9 @@ function simLoop(time) {
         const dt = (time - lastTime) / 1000; // convert to seconds
         lastTime = time; document.title=time
 
-        pumpTimeSince=(time/1000-pumpLastTime)
-        if(pumpTimeSince > pumpThreshold){pumpLastTime=time/1000; pumpAmplitude= -pumpAmplitude;upBoing=true}
+    
          
-     sigTimeSince=(time/1000-sigLastTime)
-     if(sigTimeSince > sigThreshold) {sigLastTime=time/1000; sigAmplitude=-sigAmplitude; upSigBoing=true}
+ 
      
      // Cap dt to prevent instability if the tab loses focus
         const clampedDt = Math.min(dt, 0.1);
@@ -394,12 +392,12 @@ function simLoop(time) {
          }
 
          dampingForce = - damping * v_mid;  // damping force
-    let pumpForce = 0    
-     if (holdBoing) {pumpForce = -pumpAmplitude }
 
-     let sigForce=0
-      if(holdSigBoing){sigForce=-sigAmplitude}
-         const totalForce = springForce + dampingForce + pumpForce + sigForce
+  const pumpForce = pumpAmplitude * Math.sin ( 2 * Math.PI * pumpFrequency * time/1000)
+   const sigForce = sigAmplitude * Math.sin ( 2 * Math.PI * sigFrequency * time/1000)
+
+    
+     const totalForce = springForce + dampingForce + pumpForce + sigForce
          
          // ACCELERATION
          acceleration = totalForce / mass
