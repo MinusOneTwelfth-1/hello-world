@@ -392,7 +392,7 @@ function simLoop(time) {
   const pumpForce = pumpAmplitude * Math.sin ( 2 * Math.PI * pumpFrequency * time/1000)
    const sigForce = sigAmplitude * Math.sin ( 2 * Math.PI * sigFrequency * time/1000)
 
-document.title = pumpForce.toFIxed(3) + "  " + sigForce.toFixed(3)   
+document.title = pumpForce.toFixed(3) + "  " + sigForce.toFixed(3)   
      const totalForce = springForce + dampingForce + pumpForce + sigForce
          
          // ACCELERATION
@@ -524,6 +524,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05/2
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  3.6")
+console.log("lab.js ====  3.7")
 
 //# sourceURL=praveen.com/lab.js
