@@ -344,11 +344,11 @@ function playBoing(ofst=0.2) {   //  ====== AUDIO "BOING"
 }
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Physics Engine Loop @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+let tankFrequency = 1/ ( 1/ 2 / Math.PI * Math.sqrt (k/mass)  )
+let pumpFrequency= tankFrequency * 2.05
+let pumpAmplitude= 10
 
-let pumpFrequency= 10.0
-let pumpAmplitude=20
-
-let sigFrequency=10.0
+let sigFrequency= tankFrequency / 1.05
 let sigAmplitude=5
 
 let lastZeroTime=0 // for zero crossing measurement
