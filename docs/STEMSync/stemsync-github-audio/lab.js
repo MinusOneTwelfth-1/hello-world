@@ -351,6 +351,9 @@ let pumpAmplitude= 10
 let sigFrequency= tankFrequency / 1.05
 let sigAmplitude=5
 
+let pumpForce=0.
+let sigForce = 0.
+
 let lastZeroTime=0 // for zero crossing measurement
 let zeroCrossingPeriod=1
 
@@ -389,8 +392,10 @@ function simLoop(time) {
 
          dampingForce = - damping * v_mid;  // damping force
 
-  const pumpForce = pumpAmplitude * Math.sin ( 2 * Math.PI * pumpFrequency * time/1000)
-   const sigForce = sigAmplitude * Math.sin ( 2 * Math.PI * sigFrequency * time/1000)
+  pumpForce = pumpAmplitude * Math.sin ( 2 * Math.PI * pumpFrequency * time/1000)
+   sigForce = sigAmplitude * Math.sin ( 2 * Math.PI * sigFrequency * time/1000)
+
+     drawArrow(20,y,20,y+sigForce*5,"red")
 
 document.title = pumpForce.toFixed(3) + "  " + sigForce.toFixed(3)   
      const totalForce = springForce + dampingForce + pumpForce + sigForce
@@ -524,6 +529,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05/2
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  3.7")
+console.log("lab.js ====  3.8")
 
 //# sourceURL=praveen.com/lab.js
