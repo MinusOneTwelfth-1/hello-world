@@ -294,6 +294,9 @@ console.log('lab.js')
         ctx.fill();
         ctx.stroke();
 
+         // draw sigForce arrow
+         drawArrow(20,y,20,y+sigForce*5,"red")
+
          // plot
          plotCtx.lineWidth=3;
          plotCtx.strokeStyle="#c82e2e"
@@ -302,7 +305,8 @@ console.log('lab.js')
                      {   for(let i=0;i<=110;i++){
            plotCtx.lineTo(i, plotPump[i])
           plotCtx.stroke()
-    } }
+                                               }
+                     }
     }
        // Draw equiY line
         ctx.strokeStyle = '#555';
@@ -407,7 +411,7 @@ function simLoop(time) {
   pumpForce = pumpAmplitude * Math.sin ( 2 * Math.PI * pumpFrequency * time/1000)
    sigForce = sigAmplitude * Math.sin ( 2 * Math.PI * sigFrequency * time/1000)
 
-     drawArrow(20,y,20,y+sigForce*5,"red")
+  
 
 document.title = pumpForce.toFixed(3) + "  " + sigForce.toFixed(3)   
      const totalForce = springForce + dampingForce + pumpForce + sigForce
@@ -541,6 +545,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05/2
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  3.9")
+console.log("lab.js ====  4.0")
 
 //# sourceURL=praveen.com/lab.js
