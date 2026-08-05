@@ -345,14 +345,10 @@ function playBoing(ofst=0.2) {   //  ====== AUDIO "BOING"
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Physics Engine Loop @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-let pumpThreshold= 10.0
-let pumpLastTime = 0
-let pumpTimeSince=0
+let pumpFrequency= 10.0
 let pumpAmplitude=20
 
-let sigThreshold=10.0
-let sigLastTime=0
-let sigTimeSince=0
+let sigFrequency=10.0
 let sigAmplitude=5
 
 let lastZeroTime=0 // for zero crossing measurement
