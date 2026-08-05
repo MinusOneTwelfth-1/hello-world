@@ -308,6 +308,19 @@ console.log('lab.js')
                                                }
                      }
     }
+    
+
+function drawArrow(x0,y0,x1,y1,color="red"){ctx.strokeStyle=color
+ctx.lineWidth=3
+ctx.beginPath()
+ctx.moveTo(x0,y0)
+ctx.lineTo(x1,y1)
+ctx.lineTo(x1-10,y1-10*Math.sign(y1-y0))
+ctx.moveTo(x1,y1)
+ctx.lineTo(x1+10,y1-10*Math.sign(y1-y0))
+ctx.stroke()}
+
+
        // Draw equiY line
         ctx.strokeStyle = '#555';
         ctx.lineWidth = 2;
@@ -348,15 +361,6 @@ function playBoing(ofst=0.2) {   //  ====== AUDIO "BOING"
 }
 
 
-function drawArrow(x0,y0,x1,y1,color="red"){ctx.strokeStyle=color
-ctx.lineWidth=3
-ctx.beginPath()
-ctx.moveTo(x0,y0)
-ctx.lineTo(x1,y1)
-ctx.lineTo(x1-10,y1-10*Math.sign(y1-y0))
-ctx.moveTo(x1,y1)
-ctx.lineTo(x1+10,y1-10*Math.sign(y1-y0))
-ctx.stroke()}
 
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  Physics Engine Loop @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
