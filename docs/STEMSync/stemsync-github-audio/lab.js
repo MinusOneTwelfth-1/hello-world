@@ -396,7 +396,7 @@ function simLoop(time) {
     
      // ==== zero crossing detector
      if (y_mtr_old < 0  && y_mtr > 0 ) {zeroCrossingPeriod=(time-lastZeroTime)/1000; 
-                                        console.log("zero zero zero " + zeroCrossingPeriod + " " + 1/zeroCrossingPeriod)
+               //  console.log("zero zero zero " + zeroCrossingPeriod + " " + 1/zeroCrossingPeriod)
                                        lastZeroTime=time
                                        }
      
