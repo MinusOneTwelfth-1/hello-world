@@ -297,6 +297,9 @@ console.log('lab.js')
          // draw sigForce arrow
          drawArrow(20,y,20,y+sigForce*5,"red")
 
+         // draw pumpForce arrow
+         drawArrow(40,y,40,y+pumpForce*5,"blue")
+
          // plot
          plotCtx.lineWidth=3;
          plotCtx.strokeStyle="#c82e2e"
