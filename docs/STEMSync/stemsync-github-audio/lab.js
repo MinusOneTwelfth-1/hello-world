@@ -20,7 +20,7 @@ console.log('lab.js')
     const g = 9.81;            // Gravity
     const pixelsPerMeter = 20; // Scale factor
     const anchorX = canvas.width / 2;
-    const anchorY = 50;        // Ceiling height
+    let anchorY = 50;        // Ceiling height
     const restLength = 150;    // Unstretched spring length in pixels
 
         let mass = parseFloat(massSlider.value);
@@ -228,23 +228,7 @@ console.log('lab.js')
   
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-       arow=downarro; if(pumpAmplitude > 0 ){arow=uparro}
-       if(upBoing ){ctx.drawImage(arow,anchorX-20,y+20); upBoing=false; holdBoing=true; boingCount=35 } // flash the up arrow during pump boing
-       if(holdBoing){boingCount=boingCount-1; ctx.drawImage(arow,anchorX-20,y+25
-                                                           ); 
-                      if (boingCount<=0) { upBoing=false; holdBoing=false;
-
-                                       }
-                    }
-
-              arow=downsigarro; if(sigAmplitude > 0 ){arow=upsigarro}
-       if(upSigBoing ){ctx.drawImage(arow,anchorX-50,y+20,40,40); upSigBoing=false; holdSigBoing=true; sigBoingCount=35 } // flash the up arrow during pump boing
-       if(holdSigBoing){sigBoingCount=sigBoingCount-1; ctx.drawImage(arow,anchorX-50,y+20, 40,40   ); 
-                      if (sigBoingCount<=0) { upSigBoing=false; holdSigBoing=false;
-
-                                       }
-                    } 
-         
+             
         // Draw Ceiling
         ctx.strokeStyle = '#333';
         ctx.lineWidth = 8;
@@ -379,6 +363,8 @@ let sigForce = 0.
 
 let lastZeroTime=0 // for zero crossing measurement
 let zeroCrossingPeriod=1
+
+let supportY= 0.
 
 function simLoop(time) {
   
@@ -552,6 +538,6 @@ freq=1/2/Math.PI*Math.sqrt(k/mass)
 pumpThreshold=1/freq/2*1.05/2
 sigThreshold=1/freq/2/0.9
 
-console.log("lab.js ====  4.2")
+console.log("lab.js ====  4.3")
 
 //# sourceURL=praveen.com/lab.js
