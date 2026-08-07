@@ -38,7 +38,7 @@ console.log('lab.js')
     let equiY=y
     let springForce;
     let dampingForce;
-    let supportY=anchorY
+    let support_dY=0   // pulling up on spring for pump input
      // Interaction State
     let isDragging = false;
 
@@ -77,6 +77,7 @@ console.log('lab.js')
     }
 
     function resetToEquilibrium() {
+         support_dY=0.
         const equilibriumOffset = (mass * g * pixelsPerMeter * 0) / k;    // ======= no gravity in new version ======
         y = anchorY + restLength + equilibriumOffset;
          y_mtr = (y - anchorY - restLength)/pixelsPerMeter
@@ -233,8 +234,8 @@ console.log('lab.js')
         ctx.strokeStyle = '#333';
         ctx.lineWidth = 8;
         ctx.beginPath();
-        ctx.moveTo(anchorX - 30, supportY);
-        ctx.lineTo(anchorX + 30, supportY);
+        ctx.moveTo(anchorX - 30, anchorY + support_dY*pixelsPerMeter);
+        ctx.lineTo(anchorX + 30, anchorY + support_dY*pixelsPerMeter);
         ctx.stroke();
 
               // Draw equilibrium line
@@ -250,16 +251,16 @@ console.log('lab.js')
         ctx.setLineDash([]);
 
         // Draw Spring
-        const currentLength = y - supportY;
+        const currentLength = y - support_dY*pixelsPerMeter;
         const turns = 15;
         ctx.strokeStyle = '#555';
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.moveTo(anchorX, supportY);
+        ctx.moveTo(anchorX, anchorY + support_dY*pixelsPerMeter);
         
         for (let i = 0; i <= turns; i++) {
             const fraction = i / turns;
-            const springY = supportY + currentLength * fraction;
+            const springY = anchorY + support_dY*pixelsPerMeter + currentLength * fraction;
             let springX = anchorX;
             if (i > 0 && i < turns) {
                 springX += (i % 2 === 0 ? 15 : -15);
@@ -394,7 +395,7 @@ function simLoop(time) {
 
          // FIND TOTAL FORCE
          if (! nonlinchk.checked){     // linear or nonlinear spring force 
-        springForce = -k * y_mtr ;
+        springForce = -k * (y_mtr - support_dY) ;
         }
          else{ springForce= k* nonlinForce(-y_mtr, nl_a, nl_k, nl_xt)
          }
