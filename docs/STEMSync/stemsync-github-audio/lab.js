@@ -38,7 +38,7 @@ console.log('lab.js')
     let equiY=y
     let springForce;
     let dampingForce;
-
+    let supportY=anchorY
      // Interaction State
     let isDragging = false;
 
@@ -233,8 +233,8 @@ console.log('lab.js')
         ctx.strokeStyle = '#333';
         ctx.lineWidth = 8;
         ctx.beginPath();
-        ctx.moveTo(anchorX - 30, anchorY);
-        ctx.lineTo(anchorX + 30, anchorY);
+        ctx.moveTo(anchorX - 30, supportY);
+        ctx.lineTo(anchorX + 30, supportY);
         ctx.stroke();
 
               // Draw equilibrium line
@@ -250,16 +250,16 @@ console.log('lab.js')
         ctx.setLineDash([]);
 
         // Draw Spring
-        const currentLength = y - anchorY;
+        const currentLength = y - supportY;
         const turns = 15;
         ctx.strokeStyle = '#555';
         ctx.lineWidth = 2;
         ctx.beginPath();
-        ctx.moveTo(anchorX, anchorY);
+        ctx.moveTo(anchorX, supportY);
         
         for (let i = 0; i <= turns; i++) {
             const fraction = i / turns;
-            const springY = anchorY + currentLength * fraction;
+            const springY = supportY + currentLength * fraction;
             let springX = anchorX;
             if (i > 0 && i < turns) {
                 springX += (i % 2 === 0 ? 15 : -15);
@@ -364,7 +364,7 @@ let sigForce = 0.
 let lastZeroTime=0 // for zero crossing measurement
 let zeroCrossingPeriod=1
 
-let supportY= 0.
+
 
 function simLoop(time) {
   
